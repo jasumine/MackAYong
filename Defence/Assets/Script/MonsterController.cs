@@ -28,22 +28,22 @@ public class MonsterController : MonoBehaviour
 
 
 
-    private void CreateMonsterRandom()
-    {
+    //private void CreateMonsterRandom()
+    //{
 
-        Debug.Log("무작위 위치에 몬스터를 생성합니다.");
+    //    Debug.Log("무작위 위치에 몬스터를 생성합니다.");
 
-        delayMonster += time.deltaTime();
+    //    delayMonster += time.deltaTime();
 
-        if(delayMonster > 2f)
-        {
-            // y의 위치를 출발지~중간지점1 까지 랜덤으로 넣고
-            // x의 위치를 약간만 조정(랜덤이라는 느낌이 나기위해)
-            GameObject monster = Instantiate(monsterPullingObject[0], monsterPullingObject.transform.position);
+    //    if(delayMonster > 2f)
+    //    {
+    //        // y의 위치를 출발지~중간지점1 까지 랜덤으로 넣고
+    //        // x의 위치를 약간만 조정(랜덤이라는 느낌이 나기위해)
+    //        GameObject monster = Instantiate(monsterPullingObject[0], monsterPullingObject.transform.position);
             
-            GameManager.instance.usingMonsterList.Add(monster);
-        }
-    }
+    //        GameManager.instance.usingMonsterList.Add(monster);
+    //    }
+    //}
 
 
 }
