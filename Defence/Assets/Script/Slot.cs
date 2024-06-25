@@ -14,7 +14,7 @@ public class Slot : MonoBehaviour
     private void OnGUI()
     {
 
-        if (GUI.Button(new Rect(10, 10, 50, 50), "solider"))
+        if (GUI.Button(new Rect(10, 10, 100, 100), "solider"))
         {
             Summon();
         }
