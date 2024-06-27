@@ -11,9 +11,6 @@ public class DevilDraw : MonoBehaviour
     public int bossFourCount;
     public int bossFiveCount;
 
-    public bool isSpecialCoolDown;
-
-
     private void OnGUI()
     {
         if(GUI.Button(new Rect(10,120, 100,100), "¿œπ› 100%"))

@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            monsterController.CreateMonster();
+            //monsterController.CreateMonster();
 
             yield return new WaitForSeconds(monsterLifeTime);
         }
