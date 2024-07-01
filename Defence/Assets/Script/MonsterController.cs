@@ -15,8 +15,6 @@ public class MonsterController : MonoBehaviour
     public GameObject monsterParent;
     private float delayMonster;
 
-
-
     StageController stage;
 
     private void Start()
@@ -37,6 +35,7 @@ public class MonsterController : MonoBehaviour
 
     private void CreateMonster()
     {
+        // 매 라운드마다 20마리의 몬스터를 생성한다.
         for(int i = 0; i<20;i++)
         {
             GameObject monster = Instantiate(monsterPrefabs[0], wayPoints[0].transform.position, Quaternion.identity);
@@ -51,14 +50,29 @@ public class MonsterController : MonoBehaviour
 
     private void OnGUI()
     {
-        if (GUI.Button(new Rect(120, 10, 100, 100), "hp증가"))
+        if (GUI.Button(new Rect(120, 10, 100, 100), "hp 증가"))
         {
             IncreaseHp();
         }
 
-        if (GUI.Button(new Rect(120, 120, 100, 100), "speed 증가"))
+        if (GUI.Button(new Rect(120, 120, 100, 100), "이동속도 증가"))
         {
             IncreaseSpeed();
+        }
+
+        if (GUI.Button(new Rect(120, 230, 100, 100), "공격속도 증가"))
+        {
+            IncreaseAttackSpeed();
+        }
+
+        if (GUI.Button(new Rect(120, 340, 100, 100), "골드획득 증가"))
+        {
+            IncreaseAttackSpeed();
+        }
+
+        if (GUI.Button(new Rect(120, 450, 100, 100), "확률 증가"))
+        {
+            IncreasePercent();
         }
     }
 
@@ -84,6 +98,39 @@ public class MonsterController : MonoBehaviour
         Debug.Log("속도를 증가합니다.");
     }
 
+
+    private void IncreaseAttackSpeed()
+    {
+        for (int i = 0; i < monsterList.Count; i++)
+        {
+            MonsterStat mStat = monsterList[i].GetComponent<MonsterStat>();
+
+            mStat.attackSpeed++;
+        }
+        Debug.Log("공격속도를 증가합니다.");
+    }
+
+    private void IncreaseGold()
+    {
+        for (int i = 0; i < monsterList.Count; i++)
+        {
+            MonsterStat mStat = monsterList[i].GetComponent<MonsterStat>();
+
+            mStat.speed++;
+        }
+        Debug.Log("재화 획득량을 증가합니다.");
+    }
+
+    private void IncreasePercent()
+    {
+        for (int i = 0; i < monsterList.Count; i++)
+        {
+            MonsterStat mStat = monsterList[i].GetComponent<MonsterStat>();
+
+            mStat.speed++;
+        }
+        Debug.Log("뽑기 획득률을 증가합니다.");
+    }
 
 
     /*
