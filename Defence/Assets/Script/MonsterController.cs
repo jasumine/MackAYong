@@ -40,6 +40,12 @@ public class MonsterController : MonoBehaviour
         {
             GameObject monster = Instantiate(monsterPrefabs[0], wayPoints[0].transform.position, Quaternion.identity);
 
+            Monster monsterScript = monster.GetComponent<Monster>();
+            monsterScript.wayPoints.Add(wayPoints[0]);
+            monsterScript.wayPoints.Add(wayPoints[1]);
+            monsterScript.wayPoints.Add(wayPoints[2]);
+            monsterScript.wayPoints.Add(wayPoints[3]);
+
             monsterList.Add(monster);
 
             monster.name= monster+i.ToString();

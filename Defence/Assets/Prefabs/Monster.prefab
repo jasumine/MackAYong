@@ -50,6 +50,7 @@ MonoBehaviour:
   maxHp: 100
   curHp: 0
   speed: 1
+  attackSpeed: 0
 --- !u!114 &4664293346523447834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,11 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130d16c686b5ef8418d6cd81f5b8d02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  wayPoints: []
   targetPoint: {fileID: 0}
 --- !u!222 &3566131389045418343
 CanvasRenderer:
