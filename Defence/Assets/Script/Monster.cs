@@ -2,6 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum MonsterState
+{ 
+    move,
+    attack
+
+}
+
+
+
 public class Monster : MonoBehaviour
 {
     // 몬스터는 생성되면 도착지까지 계속 걸어간다.
@@ -11,14 +21,18 @@ public class Monster : MonoBehaviour
     public Transform targetPoint;
 
     private MonsterStat mStat;
-    private Collider mCollider;
+
+    public MonsterState monsterState;
+    private Gate gateScript;
+
+    private bool attackStart;
 
     private void Start()
     {
         mStat = GetComponent<MonsterStat>();
-        mCollider = GetComponent<Collider>();
         targetPoint = wayPoints[1];
         this.transform.position = wayPoints[0].position;
+        monsterState = MonsterState.move;
     }
 
 
@@ -29,11 +43,17 @@ public class Monster : MonoBehaviour
             MonsterDie();
         }
 
-        GoPoint();
-        ChangePoint();
+        if(monsterState == MonsterState.move)
+        {
+            GoPoint();
+            ChangePoint();
+        }
+        if(monsterState == MonsterState.attack && attackStart== false)
+        {
+            attackStart = true;
+            StartCoroutine("AttackGate");
+        }
     }
-
-
 
     private void ChangePoint()
     {
@@ -47,7 +67,7 @@ public class Monster : MonoBehaviour
         }
         else if (this.transform.position == wayPoints[3].position)
         {
-            MonsterDie();
+            
         }
     }
 
@@ -56,31 +76,43 @@ public class Monster : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, mStat.speed * Time.deltaTime);
     }
 
+    IEnumerator AttackGate()
+    {
+        while(attackStart)
+        {
+            gateScript.curHp--;
 
+            Debug.Log(gateScript.gameObject.name + "에 피해를 입혔습니다. gate Hp : " + gateScript.curHp);
+
+            yield return new WaitForSeconds(mStat.attackSpeed);
+            if (gateScript.curHp <= 0)
+            {
+                attackStart = false;
+                gateScript = null;
+                monsterState = MonsterState.move;
+            }
+        }
+    }
 
     private void MonsterDie()
     {
-        // 죽는 이펙트
+        // 죽은 후 처리
         Debug.Log("몬스터가 죽었습니다.");
+        Destroy(this.gameObject);
 
-        // collider를 켜서 주위에 플레이어가 있다면, 피해를 입힌다.
-        mCollider.enabled = true;
-
-        this.gameObject.SetActive(false);
-        this.transform.position = wayPoints[0].position;
-        targetPoint = wayPoints[1];
-        mCollider.enabled = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(other.CompareTag("Adventurer"))
+        // 문에 피해입히기
+        if (collision.gameObject.tag == "Gate")
         {
-            Adventurer adventurer = other.GetComponent<Adventurer>();
-
-            adventurer.SetHealth();
-
-            Debug.Log("몬스터가 모험가 진영에 피해를 입힙니다.");
+            monsterState = MonsterState.attack;
+            gateScript = collision.GetComponent<Gate>();
+            attackStart = false;
         }
     }
+
 }

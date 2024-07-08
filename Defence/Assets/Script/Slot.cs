@@ -37,7 +37,7 @@ public class Slot : MonoBehaviour
             // 용병 object를 slotList의 위치에 생성해준다.
             GameObject solider = Instantiate(soliderList[soliderNum], slotList[slotNum].gameObject.transform);
 
-            Debug.Log(slotList[slotNum].name + "위치에" + soliderNum + "를 소환합니다.");
+          //  Debug.Log(slotList[slotNum].name + "위치에" + soliderNum + "를 소환합니다.");
 
             slotList.RemoveAt(slotNum);
 

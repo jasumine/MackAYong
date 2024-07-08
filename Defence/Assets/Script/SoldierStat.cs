@@ -17,6 +17,6 @@ public class SoldierStat : MonoBehaviour
     public TargetType targetType;
 
     public float attackSpeed;
-
+    public float curAttackSpeed;
 
 }

@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Soldier : MonoBehaviour
 {    
     private SoldierStat soldierStat;
+
+
+    public GameObject bulletPrefab;
     public GameObject target;
+
 
     private void Start()
     {
@@ -21,10 +26,23 @@ public class Soldier : MonoBehaviour
 
     private void AttackTarget()
     {
-        // 공격속도를 고려해서 공격하기.
-        Debug.Log(target.name + "을 공격합니다.");
-    }
+        soldierStat.curAttackSpeed += Time.deltaTime;
 
+        if (soldierStat.curAttackSpeed >= soldierStat.attackSpeed)
+        {
+
+            soldierStat.curAttackSpeed = 0;
+
+            GameObject bullet = Instantiate(bulletPrefab, this.transform);
+
+            SoldierBullet soldierBullet = bullet.GetComponent<SoldierBullet>();
+
+            soldierBullet.SetTarget(target);
+
+            Debug.Log(target.name + "을 공격합니다.");
+        }
+
+    }
 
     private void SetTarget()
     {
@@ -48,16 +66,23 @@ public class Soldier : MonoBehaviour
 
     private void AttackPositionFirst()
     {
-        target = GameManager.instance.usingMonsterList[0];
+        if (GameManager.instance.monsterList[0] == null)
+        {
+            GameManager.instance.monsterList.RemoveAt(0);
+        }
+
+        target = GameManager.instance.monsterList[0];
     }
 
     private void AttackRandom()
     {
-        int num = GameManager.instance.usingMonsterList.Count;
-
+        int num = GameManager.instance.monsterList.Count;
         int randNum = Random.Range(0,num);
-
-        target = GameManager.instance.usingMonsterList[randNum];
+        if (GameManager.instance.monsterList[randNum] == null)
+        {
+            GameManager.instance.monsterList.RemoveAt(randNum);
+        }
+        target = GameManager.instance.monsterList[randNum];
     }
 
     private void HpFirst()

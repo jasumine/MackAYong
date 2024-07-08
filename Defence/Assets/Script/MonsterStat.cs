@@ -15,8 +15,8 @@ public class MonsterStat : MonoBehaviour
         curHp = maxHp;
     }
 
-    public void SetHp()
+    public void SetHp(float damage)
     {
-        curHp = maxHp;
+        curHp -= damage;
     }
 }

@@ -5,17 +5,16 @@ using UnityEngine;
 public class MonsterController : MonoBehaviour
 {
     // 몬스터 생성을 담당하는 클래스
-
-
-    public List<GameObject> monsterList;
     public List<GameObject> monsterPrefabs;
 
     public List<Transform> wayPoints;
 
     public GameObject monsterParent;
-    private float delayMonster;
+    public float delayMonster;
+    public float monsterCount;
 
     StageController stage;
+
 
     private void Start()
     {
@@ -28,15 +27,17 @@ public class MonsterController : MonoBehaviour
         if (stage.stgeStart == true)
         {
             stage.stgeStart = false;
-            CreateMonster();
+            monsterCount = 0;
+            StartCoroutine("CreateMonster");
         }
 
     }
 
-    private void CreateMonster()
-    {
-        // 매 라운드마다 20마리의 몬스터를 생성한다.
-        for(int i = 0; i<20;i++)
+   /* private void CreateMonster()
+    { 
+
+        //매 라운드마다 20마리의 몬스터를 생성한다.
+        for (int i = 0; i < 20; i++)
         {
             GameObject monster = Instantiate(monsterPrefabs[0], wayPoints[0].transform.position, Quaternion.identity);
 
@@ -48,8 +49,31 @@ public class MonsterController : MonoBehaviour
 
             monsterList.Add(monster);
 
-            monster.name= monster+i.ToString();
+            monster.name = monster + i.ToString();
             monster.transform.parent = monsterParent.transform;
+
+        }
+    }
+   */
+    IEnumerator CreateMonster()
+    {
+        while(monsterCount !=20)
+        {
+            GameObject monster = Instantiate(monsterPrefabs[0], wayPoints[0].transform.position, Quaternion.identity);
+
+            Monster monsterScript = monster.GetComponent<Monster>();
+            monsterScript.wayPoints.Add(wayPoints[0]);
+            monsterScript.wayPoints.Add(wayPoints[1]);
+            monsterScript.wayPoints.Add(wayPoints[2]);
+            monsterScript.wayPoints.Add(wayPoints[3]);
+
+            GameManager.instance.monsterList.Add(monster);
+
+            monster.name = monster + monsterCount.ToString();
+            monster.transform.parent = monsterParent.transform;
+
+            yield return new WaitForSeconds(delayMonster);
+           monsterCount++;
         }
     }
 
@@ -84,9 +108,9 @@ public class MonsterController : MonoBehaviour
 
     private void IncreaseHp()
     {
-        for (int i = 0; i < monsterList.Count; i++)
+        for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
         {
-            MonsterStat mStat = monsterList[i].GetComponent<MonsterStat>();
+            MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
 
             mStat.maxHp++;
         }
@@ -95,9 +119,9 @@ public class MonsterController : MonoBehaviour
 
     private void IncreaseSpeed()
     {
-        for (int i = 0; i < monsterList.Count; i++)
+        for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
         {
-            MonsterStat mStat = monsterList[i].GetComponent<MonsterStat>();
+            MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
 
             mStat.speed++;
         }
@@ -107,9 +131,9 @@ public class MonsterController : MonoBehaviour
 
     private void IncreaseAttackSpeed()
     {
-        for (int i = 0; i < monsterList.Count; i++)
+        for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
         {
-            MonsterStat mStat = monsterList[i].GetComponent<MonsterStat>();
+            MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
 
             mStat.attackSpeed++;
         }
@@ -118,9 +142,9 @@ public class MonsterController : MonoBehaviour
 
     private void IncreaseGold()
     {
-        for (int i = 0; i < monsterList.Count; i++)
+        for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
         {
-            MonsterStat mStat = monsterList[i].GetComponent<MonsterStat>();
+            MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
 
             mStat.speed++;
         }
@@ -129,9 +153,9 @@ public class MonsterController : MonoBehaviour
 
     private void IncreasePercent()
     {
-        for (int i = 0; i < monsterList.Count; i++)
+        for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
         {
-            MonsterStat mStat = monsterList[i].GetComponent<MonsterStat>();
+            MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
 
             mStat.speed++;
         }

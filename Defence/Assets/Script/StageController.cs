@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -58,7 +59,10 @@ public class StageController : MonoBehaviour
 
         if(gate.Count <=0)
         {
+            // TODO : 게임 종료 처리하기
+
             Debug.Log("모든 문이 부셔져 게임이 끝납니다.");
+            
         }
     }
 
