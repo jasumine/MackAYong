@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum MonsterType
+{
+    basic,
+    special,
+    boss
+}
+
+
+
 public enum MonsterState
 { 
     move,
@@ -14,6 +23,9 @@ public enum MonsterState
 
 public class Monster : MonoBehaviour
 {
+    public MonsterState monsterState;
+    public MonsterType monsterType;
+
     // 몬스터는 생성되면 도착지까지 계속 걸어간다.
     // 몬스터의 이동경로위치
     // 0 - 시작지점, 1- 1차 중간지점, 2- 2차 중간지점, 3 - 도착지점
@@ -22,9 +34,7 @@ public class Monster : MonoBehaviour
 
     private MonsterStat mStat;
 
-    public MonsterState monsterState;
     private Gate gateScript;
-
     private bool attackStart;
 
     private void Start()
@@ -82,7 +92,7 @@ public class Monster : MonoBehaviour
         {
             gateScript.curHp--;
 
-            Debug.Log(gateScript.gameObject.name + "에 피해를 입혔습니다. gate Hp : " + gateScript.curHp);
+            //Debug.Log(gateScript.gameObject.name + "에 피해를 입혔습니다. gate Hp : " + gateScript.curHp);
 
             yield return new WaitForSeconds(mStat.attackSpeed);
             if (gateScript.curHp <= 0)
@@ -98,8 +108,17 @@ public class Monster : MonoBehaviour
     {
         // 죽은 후 처리
         Debug.Log("몬스터가 죽었습니다.");
-        Destroy(this.gameObject);
 
+
+        if(monsterType == MonsterType.special || monsterType == MonsterType.boss)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+
+        }
     }
 
 

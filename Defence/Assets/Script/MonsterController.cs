@@ -13,25 +13,13 @@ public class MonsterController : MonoBehaviour
     public float delayMonster;
     public float monsterCount;
 
-    StageController stage;
 
-
-    private void Start()
+    public void CreateController()
     {
-        stage = GetComponent<StageController>();
+        monsterCount = 0;
+        StartCoroutine("CreateMonster");
     }
 
-
-    private void Update()
-    {
-        if (stage.stgeStart == true)
-        {
-            stage.stgeStart = false;
-            monsterCount = 0;
-            StartCoroutine("CreateMonster");
-        }
-
-    }
 
    /* private void CreateMonster()
     { 

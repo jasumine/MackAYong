@@ -66,7 +66,8 @@ public class Soldier : MonoBehaviour
 
     private void AttackPositionFirst()
     {
-        if (GameManager.instance.monsterList[0] == null)
+        if (GameManager.instance.monsterList[0] == null 
+            || GameManager.instance.monsterList[0].activeInHierarchy==false)
         {
             GameManager.instance.monsterList.RemoveAt(0);
         }
@@ -78,7 +79,8 @@ public class Soldier : MonoBehaviour
     {
         int num = GameManager.instance.monsterList.Count;
         int randNum = Random.Range(0,num);
-        if (GameManager.instance.monsterList[randNum] == null)
+        if (GameManager.instance.monsterList[randNum] == null 
+            || GameManager.instance.monsterList[0].activeInHierarchy == false)
         {
             GameManager.instance.monsterList.RemoveAt(randNum);
         }

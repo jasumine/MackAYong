@@ -12,13 +12,18 @@ public class StageController : MonoBehaviour
     public float stageTime;
     public float stageMaxTime;
 
-    public bool stgeStart;
+    private MonsterController monsterController;
+    private DevilDraw devillDraw;
+    private SpecialAbility specialAbility;
 
     private void Start()
     {
         stage = 1;
         stageTime = stageMaxTime;
-        stgeStart = true;
+
+        monsterController = GetComponent<MonsterController>();
+        devillDraw = GetComponent<DevilDraw>();
+        specialAbility = GetComponent<SpecialAbility>();
     }
 
 
@@ -35,11 +40,31 @@ public class StageController : MonoBehaviour
         {
             stage++;
             stageTime = stageMaxTime;
-            stgeStart = true;
+
+
             Debug.Log("다음 스테이지로 넘어갑니다.");
+            // 3판마다 특별능력 뽑기 진행
+            if (stage % 3 == 0)
+            {
+                Debug.Log("특별 능력 뽑기를 진행합니다.");
+                specialAbility.SpecialAbilityController();
+                
+            }
+
+            // 5판마다 보스스테이지 진행 외에는 몬스터소환
+            if (stage % 5 == 0)
+            {
+                Debug.Log("보스 스테이지를 진행합니다.");
+                devillDraw.SummonSetBoss();
+            }
+            else
+            {
+                Debug.Log("일반 스테이지를 진행합니다.");
+                monsterController.CreateController();
+
+            }
         }
     }
-
 
 
     public void CheckGateHp()
