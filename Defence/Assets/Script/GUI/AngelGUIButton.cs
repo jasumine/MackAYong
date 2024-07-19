@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Adventurer : MonoBehaviour
+public class AngelGUIButton : MonoBehaviour
 {
 
-    // 모험가 스킬 넣기
 }

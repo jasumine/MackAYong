@@ -51,23 +51,27 @@ public class SpecialMonster : MonoBehaviour
     }
 
 
-private void SpecialBossDraw()
+public void SpecialBossDraw()
     {
-        isSpecialCoolDown = false;
-        Debug.Log("특별 몬스터를 소환 했습니다.");
+        if (isSpecialCoolDown == true)
+        {
 
-        bossObject.SetActive(true);
-        GameManager.instance.monsterList.Add(bossObject);
+            isSpecialCoolDown = false;
+            Debug.Log("특별 몬스터를 소환 했습니다.");
 
-        Monster monsterScript = bossObject.GetComponent<Monster>();
-        MonsterStat monsterStat = bossObject.GetComponent<MonsterStat>();
-        monsterStat.curHp = monsterStat.maxHp;
-        bossObject.transform.position = monsterScript.wayPoints[0].position;
-        monsterScript.targetPoint = monsterScript.wayPoints[1];
-        monsterScript.monsterState = MonsterState.move;
+            bossObject.SetActive(true);
+            GameManager.instance.monsterList.Add(bossObject);
 
-        coolTime = coolTimeMax;
-        isFadeAway = false;
+            Monster monsterScript = bossObject.GetComponent<Monster>();
+            MonsterStat monsterStat = bossObject.GetComponent<MonsterStat>();
+            monsterStat.curHp = monsterStat.maxHp;
+            bossObject.transform.position = monsterScript.wayPoints[0].position;
+            monsterScript.targetPoint = monsterScript.wayPoints[1];
+            monsterScript.monsterState = MonsterState.move;
+
+            coolTime = coolTimeMax;
+            isFadeAway = false;
+        }
     }
 
 
