@@ -10,7 +10,6 @@ public class Slot : MonoBehaviour
     public List<GameObject> soliderPrefabList;
 
 
-    public List<List<GameObject>> soliderList;
     public List<GameObject> firstSoliderList;
     public List<GameObject> secondSoliderList;
     public List<GameObject> thirdSoliderList;
@@ -30,22 +29,7 @@ public class Slot : MonoBehaviour
 
     private void Start()
     {
-        AddList();
-    }
 
-    private void AddList()
-    {
-        
-        soliderList.Add(firstSoliderList);
-        Debug.Log("fisrt add");
-        soliderList.Add(secondSoliderList);
-        Debug.Log("2 add");
-        soliderList.Add(thirdSoliderList);
-        Debug.Log("3 add");
-        soliderList.Add(forthSoliderList);
-        Debug.Log("4 add");
-        soliderList.Add(fifthSoliderList);
-        Debug.Log("5 add");
     }
 
 

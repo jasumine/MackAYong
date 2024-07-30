@@ -59,7 +59,7 @@ public class SoldierBullet : MonoBehaviour
                 MonsterStat monsterStat = collision.GetComponent<MonsterStat>();
                 monsterStat.SetHp(damage);
 
-                Debug.Log(collision.gameObject.name + " hp : " + monsterStat.curHp);
+               // Debug.Log(collision.gameObject.name + " hp : " + monsterStat.curHp);
 
                 Destroy(this.gameObject);
             }

@@ -78,7 +78,7 @@ public class Soldier : MonoBehaviour
 
     private void UseSkill()
     {
-        Debug.Log("스킬을 사용합니다.");
+       // Debug.Log("스킬을 사용합니다.");
         state = SoldierState.Idle;
     }
 
@@ -99,7 +99,7 @@ public class Soldier : MonoBehaviour
 
             soldierBullet.SetTarget(target);
 
-            Debug.Log(target.name + "을 공격합니다.");
+           // Debug.Log(target.name + "을 공격합니다.");
         }
 
     }

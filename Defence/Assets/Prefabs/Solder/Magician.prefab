@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3172092295282095110}
   - component: {fileID: 2689679931061244665}
   - component: {fileID: 2011031740118763771}
+  - component: {fileID: 1959746292803155894}
+  - component: {fileID: 4386527343065245204}
   m_Layer: 0
   m_Name: Magician
   m_TagString: Untagged
@@ -98,8 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961e53d263e773c44aa7c53c35a2fdcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 1
   targetType: 0
-  attackSpeed: 5
+  attackSpeed: 1
   curAttackSpeed: 2
 --- !u!114 &2011031740118763771
 MonoBehaviour:
@@ -113,5 +116,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fba58ad465cefa428681599a09e52fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSkillTime: 5
+  curSkillTime: 0
+  state: 0
   bulletPrefab: {fileID: 289574973602574063, guid: 27825fa5aa1c3424e84d5aee4dde4007, type: 3}
   target: {fileID: 0}
+--- !u!114 &1959746292803155894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293420153083120680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858d734d029debb4b9da4f72206f607e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &4386527343065245204
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293420153083120680}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.85, y: 3.99}
+    newSize: {x: 3.85, y: 3.99}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.85, y: 3.99}
+  m_EdgeRadius: 0

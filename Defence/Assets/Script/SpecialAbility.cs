@@ -6,6 +6,6 @@ public class SpecialAbility : MonoBehaviour
 {
     public void SpecialAbilityController()
     {
-        Debug.Log("ㅇㅅㅇ");
+        Debug.Log("특수 능력 뽑기를 진행합니다.");
     }
 }

@@ -7,6 +7,7 @@ TagManager:
   - Bullet
   - Gate
   - Monster
+  - Magician
   layers:
   - Default
   - TransparentFX

@@ -14,6 +14,8 @@ public enum TargetType
 public class SoldierStat : MonoBehaviour
 {
 
+    public int level = 1;
+
     public TargetType targetType;
 
     public float attackSpeed;

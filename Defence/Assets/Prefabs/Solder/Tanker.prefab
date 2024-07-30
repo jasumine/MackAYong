@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 0
-  attackSpeed: 5
+  attackSpeed: 1
   curAttackSpeed: 0
 --- !u!114 &2011031740118763771
 MonoBehaviour:
@@ -113,5 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fba58ad465cefa428681599a09e52fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSkillTime: 5
+  curSkillTime: 0
+  state: 0
   bulletPrefab: {fileID: 289574973602574063, guid: 27825fa5aa1c3424e84d5aee4dde4007, type: 3}
   target: {fileID: 0}
