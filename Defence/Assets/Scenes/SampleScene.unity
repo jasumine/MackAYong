@@ -7287,6 +7287,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterList: []
+  slotList:
+  - {fileID: 599750252}
+  - {fileID: 608352742}
+  - {fileID: 2096537074}
+  - {fileID: 936409429}
+  - {fileID: 506673443}
+  - {fileID: 1225928653}
+  - {fileID: 1402150866}
+  - {fileID: 331829673}
+  - {fileID: 704626981}
+  - {fileID: 345100636}
+  - {fileID: 1888882763}
+  - {fileID: 1128216484}
+  - {fileID: 1306399146}
+  - {fileID: 1933767737}
+  - {fileID: 1930537817}
+  soliderPrefabList:
+  - {fileID: 8293420153083120680, guid: 3bf424b3f78f6d74391f18d558c210b9, type: 3}
+  - {fileID: 8293420153083120680, guid: 8cd40b55cf75be64db8fbf1d0cab8f3d, type: 3}
+  - {fileID: 8293420153083120680, guid: fad1b2ef7a727d64c8bb2d1070a27e7e, type: 3}
+  - {fileID: 8293420153083120680, guid: c0061cc0c4671ed429ea3d19dac3c37d, type: 3}
+  - {fileID: 8293420153083120680, guid: 5285ef8ee4a282443b0841b438dad6db, type: 3}
+  firstSoliderList: []
+  secondSoliderList: []
+  thirdSoliderList: []
+  forthSoliderList: []
+  fifthSoliderList: []
 --- !u!4 &1174733545
 Transform:
   m_ObjectHideFlags: 0
@@ -8086,6 +8113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1241600976}
+  - component: {fileID: 1241600977}
   m_Layer: 0
   m_Name: Angel
   m_TagString: Untagged
@@ -8109,6 +8137,19 @@ Transform:
   - {fileID: 234347966}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1241600977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241600974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858d734d029debb4b9da4f72206f607e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDragging: 0
 --- !u!1 &1251970303
 GameObject:
   m_ObjectHideFlags: 0
@@ -10447,33 +10488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7552a8ec9eef247afdaedf7cda107c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotList:
-  - {fileID: 599750252}
-  - {fileID: 608352742}
-  - {fileID: 2096537074}
-  - {fileID: 936409429}
-  - {fileID: 506673443}
-  - {fileID: 1225928653}
-  - {fileID: 1402150866}
-  - {fileID: 331829673}
-  - {fileID: 704626981}
-  - {fileID: 345100636}
-  - {fileID: 1888882763}
-  - {fileID: 1128216484}
-  - {fileID: 1306399146}
-  - {fileID: 1933767737}
-  - {fileID: 1930537817}
-  soliderPrefabList:
-  - {fileID: 8293420153083120680, guid: 3bf424b3f78f6d74391f18d558c210b9, type: 3}
-  - {fileID: 8293420153083120680, guid: 8cd40b55cf75be64db8fbf1d0cab8f3d, type: 3}
-  - {fileID: 8293420153083120680, guid: c0061cc0c4671ed429ea3d19dac3c37d, type: 3}
-  - {fileID: 8293420153083120680, guid: 5285ef8ee4a282443b0841b438dad6db, type: 3}
-  - {fileID: 8293420153083120680, guid: fad1b2ef7a727d64c8bb2d1070a27e7e, type: 3}
-  firstSoliderList: []
-  secondSoliderList: []
-  thirdSoliderList: []
-  forthSoliderList: []
-  fifthSoliderList: []
 --- !u!114 &1616659604
 MonoBehaviour:
   m_ObjectHideFlags: 0

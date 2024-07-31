@@ -43,6 +43,51 @@ public class Soldier : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.tag == this.gameObject.tag)
+        {
+            SoldierStat otherStat = collision.GetComponent<SoldierStat>();
+
+            if (otherStat.level == this.soldierStat.level)
+            {
+                // dragging true인 오브젝트를 삭제한다.
+                if(otherStat.isDragging==true)
+                {
+                    // merge진행
+                    // 1. otherStat을 삭제한다.(드래그중인 오브젝트 삭제) + slot에 추가
+                    GameManager.GetInstance().slotList.Add(otherStat.mySlot);
+                    Destroy(collision.gameObject);
+                    // 2. 내 위치에서 다른 용병을 생성한다.(랜덤)
+                    int soldierNum = Random.Range(0, GameManager.GetInstance().soliderPrefabList.Count); // 랜덤 선택
+                    
+                    // 랜덤용병을 현재 용병의 slot에 생성, list에 넣어준다.
+                    GameObject soldier = Instantiate(GameManager.GetInstance().soliderPrefabList[soldierNum], soldierStat.mySlot.transform);
+                    GameManager.GetInstance().InputSoldierList(soldierNum, soldier);
+
+                    // 새로생긴 용병에 현재 slot정보를 넣어준다.
+                    SoldierStat stat = soldier.GetComponent<SoldierStat>();
+                    stat.mySlot = soldierStat.mySlot;
+
+                    // 3. 해당 용병은 내 래벨의 +1을 해준다.
+                    SoldierStat mergeSoldierStat = soldier.GetComponent<SoldierStat>();
+                    mergeSoldierStat.level = soldierStat.level + 1;
+
+
+                    // 4. 현재 오브젝트를 지운다.
+                    Destroy(this);
+
+                }
+                
+            }
+        }
+    }
+
+
+
+
+
     private void SetState()
     {
         switch(state)
@@ -81,6 +126,7 @@ public class Soldier : MonoBehaviour
        // Debug.Log("스킬을 사용합니다.");
         state = SoldierState.Idle;
     }
+
 
 
 

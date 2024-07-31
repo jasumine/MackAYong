@@ -5,76 +5,60 @@ using UnityEngine;
 public class MergeSoldier : MonoBehaviour
 {
     private Vector3 offset;
-   public bool isDragging = false;
+    public bool isDragging = false;
+    private GameObject selectedObject;
+    private Vector3 selectedTransform;
+    private SoldierStat selectedObjectStat;
 
-
-    SoldierStat m_stat;
-
-    private void Start()
-    {
-        m_stat = GetComponent<SoldierStat>();
-    }
+    private bool isCanMerge;
 
     void Update()
     {
-        // 마우스를 누른 순간~ 드래그 중이라면 움직일 수 있다.
+        // 마우스를 누른 순간~ 드래그 중이라면 
         if(Input.GetMouseButtonDown(0))
         {
+            // 마우스 위치를 월드 좌표로 변환
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
-            if (IsTouchingObject(mousePosition))
+
+            // Raycast를 사용해 클릭한 위치의 오브젝트를 감지하고, 해당 오브젝트를 선택한다.
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+            if (hit.collider != null)
             {
-                offset = transform.position - mousePosition;
+                selectedObject = hit.collider.gameObject;
+                selectedTransform = selectedObject.transform.position;
+
+                selectedObjectStat = selectedObject.GetComponent<SoldierStat>();
                 isDragging = true;
+                selectedObjectStat.isDragging = true;
             }
+
         }
 
-        // 마우스를 떼면 드래그 중이 아니게 된다.
+        // 마우스를 떼면 드래그 중이 아니게 되고, 
         if(Input.GetMouseButtonUp(0))
         {
-            isDragging = false;
-        }
-
-        if (isDragging)
-        {
-            Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
-            transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
-        }
-    }
-
-
-
-    private bool IsTouchingObject(Vector3 mousePosition)
-    {
-        // 마우스 위치를 월드 좌표로 변환
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        worldPosition.z = 0;
-
-        RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
-        return hit.collider != null && hit.collider.gameObject == gameObject;
-    }
-
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        if(collision.tag == this.gameObject.tag)
-        {
-            SoldierStat otherStat = collision.GetComponent<SoldierStat>();
-
-            if(otherStat.level == this.m_stat.level)
+            //오브젝트가 제자리로 돌아간다.
+            if (isDragging && selectedObject != null)
             {
-                MergeObject();
-
+                selectedObject.transform.position = selectedTransform;
             }
+
+            isDragging = false;
+            selectedObjectStat.isDragging = false;
+            selectedObject = null;
         }
-    }
 
+        if (isDragging && selectedObject != null)
+        {
+            // 마우스를 object가 따라다닌다.
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0;
 
-    private void MergeObject()
-    {
-        Debug.Log("용병을 합칩니다.");
+            selectedObject.transform.position = mousePosition;
+
+           
+        }
     }
 
 }

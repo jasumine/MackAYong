@@ -8,6 +8,10 @@ TagManager:
   - Gate
   - Monster
   - Magician
+  - Sheep
+  - Tanker
+  - Warrior
+  - Wolf
   layers:
   - Default
   - TransparentFX
@@ -15,9 +19,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Bullet
+  - Soldier
+  - Monster
   - 
   - 
   - 

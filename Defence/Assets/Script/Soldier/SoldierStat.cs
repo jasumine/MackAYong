@@ -13,6 +13,7 @@ public enum TargetType
 
 public class SoldierStat : MonoBehaviour
 {
+    public GameObject mySlot;
 
     public int level = 1;
 
@@ -20,4 +21,6 @@ public class SoldierStat : MonoBehaviour
 
     public float attackSpeed;
     public float curAttackSpeed;
+
+    public bool isDragging = false;
 }

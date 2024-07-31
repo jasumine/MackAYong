@@ -10,11 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7964655502451940087}
   - component: {fileID: 3172092295282095110}
+  - component: {fileID: 4639235367249272963}
+  - component: {fileID: 5663613497970971035}
   - component: {fileID: 2689679931061244665}
   - component: {fileID: 2011031740118763771}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tanker
-  m_TagString: Untagged
+  m_TagString: Tanker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,6 +88,78 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &4639235367249272963
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293420153083120680}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &5663613497970971035
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293420153083120680}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.9, y: 2.08}
+    newSize: {x: 1.9, y: 2.08}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9, y: 2.08}
+  m_EdgeRadius: 0
 --- !u!114 &2689679931061244665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,9 +172,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961e53d263e773c44aa7c53c35a2fdcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySlot: {fileID: 0}
+  level: 1
   targetType: 0
   attackSpeed: 1
   curAttackSpeed: 0
+  isDragging: 0
 --- !u!114 &2011031740118763771
 MonoBehaviour:
   m_ObjectHideFlags: 0
