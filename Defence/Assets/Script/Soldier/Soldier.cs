@@ -42,7 +42,51 @@ public class Soldier : MonoBehaviour
         SetState();
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        SoldierStat otherStat = collision.GetComponent<SoldierStat>();
 
+        if (otherStat.myName == this.soldierStat.myName)
+        {
+            if (otherStat.level == this.soldierStat.level)
+            {
+                // 같은 용병이고, 레벨이 같으면 합성이 가능하다.
+                soldierStat.isMerge = true;
+
+                // 합성이 가능하다면 drag중인 오브젝트이다. drag중인 오브젝트를 삭제
+                if (otherStat.canMerge == true)
+                {
+                    // merge진행
+                    // 1. other을 삭제한다.(드래그중인 오브젝트 삭제) + slot 추가(빈 슬롯이기 때문)
+                    GameManager.GetInstance().slotList.Add(otherStat.mySlot);
+                    Destroy(collision.gameObject);
+
+                    // 2. 내 위치에서 다른 용병을 생성한다.(랜덤)
+                    int soldierNum = Random.Range(0, GameManager.GetInstance().soliderPrefabList.Count); // 랜덤 선택
+
+                    // 랜덤용병을 현재 용병의 slot에 생성, list에 넣어준다.
+                    GameObject mergesoldier = Instantiate(GameManager.GetInstance().soliderPrefabList[soldierNum], soldierStat.mySlot.transform);
+                    GameManager.GetInstance().InputSoldierList(soldierNum, mergesoldier);
+
+                    // 새로생긴 용병에 현재 slot정보를 넣어준다.
+                    SoldierStat stat = mergesoldier.GetComponent<SoldierStat>();
+                    stat.mySlot = soldierStat.mySlot;
+
+                    // 3. 해당 용병은 내 래벨의 +1을 해준다.
+                    SoldierStat mergeSoldierStat = mergesoldier.GetComponent<SoldierStat>();
+                    mergeSoldierStat.level = soldierStat.level + 1;
+
+
+                    // 4. 현재 오브젝트를 지운다.
+                    Destroy(this.gameObject);
+
+                }
+
+            }
+        }
+    }
+
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
@@ -52,38 +96,46 @@ public class Soldier : MonoBehaviour
 
             if (otherStat.level == this.soldierStat.level)
             {
-                // dragging true인 오브젝트를 삭제한다.
-                if(otherStat.isDragging==true)
+                // 같은 용병이고, 레벨이 같으면 합성이 가능하다.
+                soldierStat.isMerge = true;
+
+                // 합성이 가능하다면 drag중인 오브젝트이다. drag중인 오브젝트를 삭제
+                if (otherStat.canMerge ==true)
                 {
                     // merge진행
-                    // 1. otherStat을 삭제한다.(드래그중인 오브젝트 삭제) + slot에 추가
+                    // 1. other을 삭제한다.(드래그중인 오브젝트 삭제) + slot 추가(빈 슬롯이기 때문)
                     GameManager.GetInstance().slotList.Add(otherStat.mySlot);
                     Destroy(collision.gameObject);
+
                     // 2. 내 위치에서 다른 용병을 생성한다.(랜덤)
                     int soldierNum = Random.Range(0, GameManager.GetInstance().soliderPrefabList.Count); // 랜덤 선택
                     
                     // 랜덤용병을 현재 용병의 slot에 생성, list에 넣어준다.
-                    GameObject soldier = Instantiate(GameManager.GetInstance().soliderPrefabList[soldierNum], soldierStat.mySlot.transform);
-                    GameManager.GetInstance().InputSoldierList(soldierNum, soldier);
+                    GameObject mergesoldier = Instantiate(GameManager.GetInstance().soliderPrefabList[soldierNum], soldierStat.mySlot.transform);
+                    GameManager.GetInstance().InputSoldierList(soldierNum, mergesoldier);
 
                     // 새로생긴 용병에 현재 slot정보를 넣어준다.
-                    SoldierStat stat = soldier.GetComponent<SoldierStat>();
+                    SoldierStat stat = mergesoldier.GetComponent<SoldierStat>();
                     stat.mySlot = soldierStat.mySlot;
 
                     // 3. 해당 용병은 내 래벨의 +1을 해준다.
-                    SoldierStat mergeSoldierStat = soldier.GetComponent<SoldierStat>();
+                    SoldierStat mergeSoldierStat = mergesoldier.GetComponent<SoldierStat>();
                     mergeSoldierStat.level = soldierStat.level + 1;
 
 
                     // 4. 현재 오브젝트를 지운다.
-                    Destroy(this);
+                    Destroy(this.gameObject);
 
                 }
                 
             }
         }
     }
-
+    */
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        soldierStat.isMerge = false;
+    }
 
 
 

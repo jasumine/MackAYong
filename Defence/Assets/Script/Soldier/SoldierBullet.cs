@@ -8,10 +8,22 @@ public class SoldierBullet : MonoBehaviour
     public float bulletSpeed;
     public float damage;
 
+    private float lifeTime;
+
     // Update is called once per frame
     void Update()
     {
        transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position, bulletSpeed);
+
+        lifeTime += Time.deltaTime;
+
+        // 1초가 지난후에는 사라지도록 한다.
+        if(lifeTime > 2)
+        {
+            Destroy(this.gameObject);
+        }
+    
+    
     }
 
     public void SetTarget(GameObject targetObject)

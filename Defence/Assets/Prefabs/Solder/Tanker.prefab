@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2011031740118763771}
   m_Layer: 7
   m_Name: Tanker
-  m_TagString: Tanker
+  m_TagString: Soldier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.021288276, y: 0.024836421}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -158,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9, y: 2.08}
+  m_Size: {x: 1.3039267, y: 1.2781394}
   m_EdgeRadius: 0
 --- !u!114 &2689679931061244665
 MonoBehaviour:
@@ -173,11 +173,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySlot: {fileID: 0}
+  myName: Tanker
   level: 1
   targetType: 0
   attackSpeed: 1
   curAttackSpeed: 0
   isDragging: 0
+  isMerge: 0
+  canMerge: 0
 --- !u!114 &2011031740118763771
 MonoBehaviour:
   m_ObjectHideFlags: 0

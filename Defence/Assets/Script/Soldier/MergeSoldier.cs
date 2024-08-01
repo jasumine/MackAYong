@@ -6,7 +6,7 @@ public class MergeSoldier : MonoBehaviour
 {
     private Vector3 offset;
     public bool isDragging = false;
-    private GameObject selectedObject;
+    public GameObject selectedObject;
     private Vector3 selectedTransform;
     private SoldierStat selectedObjectStat;
 
@@ -25,20 +25,32 @@ public class MergeSoldier : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
             if (hit.collider != null)
             {
-                selectedObject = hit.collider.gameObject;
-                selectedTransform = selectedObject.transform.position;
+                // object가 용병인 경우에만 선택된다.
+                if(hit.collider.gameObject.tag =="Soldier")
+                {
+                    selectedObject = hit.collider.gameObject;
+                    selectedTransform = selectedObject.transform.position;
 
-                selectedObjectStat = selectedObject.GetComponent<SoldierStat>();
-                isDragging = true;
-                selectedObjectStat.isDragging = true;
+                    selectedObjectStat = selectedObject.GetComponent<SoldierStat>();
+                    isDragging = true;
+                    selectedObjectStat.isDragging = true; // 드래그중
+                    selectedObjectStat.isMerge = false; // 합성 불가능
+                }
             }
 
         }
 
-        // 마우스를 떼면 드래그 중이 아니게 되고, 
+        // 마우스를 떼면 드래그 중이 아니게 되고, 합성이 가능하다. 
         if(Input.GetMouseButtonUp(0))
         {
-            //오브젝트가 제자리로 돌아간다.
+            // 합성가능한 상태일때 drop을 하는 경우, 합쳐진다.
+            if(selectedObjectStat.isMerge == true)
+            {
+                selectedObject = null;
+                selectedObjectStat.canMerge = true;
+            }
+
+            // 합쳐지지 않았다면, 오브젝트가 제자리로 돌아간다.
             if (isDragging && selectedObject != null)
             {
                 selectedObject.transform.position = selectedTransform;

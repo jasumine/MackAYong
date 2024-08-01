@@ -9,12 +9,22 @@ public enum TargetType
     HpFirst
 }
 
+public enum SoldierName
+{
+    Magician,
+    Sheep,
+    Tanker,
+    Warrior,
+    Wolf
+}
+
 
 
 public class SoldierStat : MonoBehaviour
 {
     public GameObject mySlot;
 
+    public string myName;
     public int level = 1;
 
     public TargetType targetType;
@@ -23,4 +33,6 @@ public class SoldierStat : MonoBehaviour
     public float curAttackSpeed;
 
     public bool isDragging = false;
+    public bool isMerge = false;
+    public bool canMerge = false;
 }

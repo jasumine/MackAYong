@@ -41,6 +41,12 @@ public class StageController : MonoBehaviour
             stage++;
             stageTime = stageMaxTime;
 
+            GameManager.GetInstance().heroCoin += 100;
+            GameManager.GetInstance().heroCoinText.text = GameManager.GetInstance().heroCoin.ToString();
+            GameManager.GetInstance().devilCoin += 100;
+            GameManager.GetInstance().devilCoinText.text = GameManager.GetInstance().devilCoin.ToString();
+            
+
 
             Debug.Log("다음 스테이지로 넘어갑니다.");
             // 3판마다 특별능력 뽑기 진행

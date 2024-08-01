@@ -109,8 +109,10 @@ public class Monster : MonoBehaviour
         // 죽은 후 처리
         Debug.Log("몬스터가 죽었습니다.");
 
+        GameManager.GetInstance().heroCoin++;
+        GameManager.GetInstance().heroCoinText.text = GameManager.GetInstance().heroCoin.ToString();
 
-        if(monsterType == MonsterType.special || monsterType == MonsterType.boss)
+        if (monsterType == MonsterType.special || monsterType == MonsterType.boss)
         {
             this.gameObject.SetActive(false);
         }

@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int heroCoin;
+    public int devilCoin;
+    public TextMeshProUGUI heroCoinText;
+    public TextMeshProUGUI devilCoinText;
+
+
     public List<GameObject> monsterList;
     public static GameManager instance;
 
     public List<GameObject> slotList;
     public List<GameObject> soliderPrefabList;
-
 
     public List<GameObject> firstSoliderList;
     public List<GameObject> secondSoliderList;
@@ -28,6 +34,15 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    private void Start()
+    {
+        heroCoin = 100;
+        heroCoinText.text = heroCoin.ToString();
+        devilCoin = 100;
+        devilCoinText.text = devilCoin.ToString();
+    }
+
 
     public void InputSoldierList(int num, GameObject gameObject)
     {
