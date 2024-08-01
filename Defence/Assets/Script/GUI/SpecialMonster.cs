@@ -6,7 +6,9 @@ using UnityEngine;
 public class SpecialMonster : MonoBehaviour
 {
     public GameObject bossObject;
- 
+
+    public GameObject summonBotton;
+
     public float coolTime;
     public float coolTimeMax;
     public float creatTime;
@@ -47,6 +49,7 @@ public class SpecialMonster : MonoBehaviour
         if(isFadeAway == true && creatTime <0 )
         {
             isSpecialCoolDown=true;
+            summonBotton.SetActive(true);
         }
     }
 
@@ -57,6 +60,7 @@ public void SpecialBossDraw()
         {
 
             isSpecialCoolDown = false;
+            summonBotton.SetActive(false);
             Debug.Log("특별 몬스터를 소환 했습니다.");
 
             bossObject.SetActive(true);
@@ -71,18 +75,6 @@ public void SpecialBossDraw()
 
             coolTime = coolTimeMax;
             isFadeAway = false;
-        }
-    }
-
-
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(500, 10, 100, 100), "특별 몬스터"))
-        {
-            if (isSpecialCoolDown == true)
-            {
-                SpecialBossDraw();
-            }
         }
     }
 
