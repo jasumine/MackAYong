@@ -8,6 +8,8 @@ TagManager:
   - Gate
   - Monster
   - Soldier
+  - BossImage
+  - DropBossImage
   layers:
   - Default
   - TransparentFX

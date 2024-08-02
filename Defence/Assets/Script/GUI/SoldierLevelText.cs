@@ -24,8 +24,6 @@ public class SoldierLevelText : MonoBehaviour
         {
             textMeshProUGUI.text = null;
         }
-
     }
-
 
 }

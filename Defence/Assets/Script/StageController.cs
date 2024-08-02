@@ -66,7 +66,7 @@ public class StageController : MonoBehaviour
             else
             {
                 Debug.Log("일반 스테이지를 진행합니다.");
-                monsterController.CreateController();
+                //monsterController.CreateController();
 
             }
         }

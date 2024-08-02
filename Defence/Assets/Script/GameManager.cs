@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI heroCoinText;
     public TextMeshProUGUI devilCoinText;
 
+    public int bossOneCount;
+    public int bossTwoCount;
+    public int bossThreeCount;
+    public int bossFourCount;
+    public int bossFiveCount;
 
     public List<GameObject> monsterList;
     public static GameManager instance;

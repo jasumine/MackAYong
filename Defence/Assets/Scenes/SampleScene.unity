@@ -1685,7 +1685,7 @@ GameObject:
   - component: {fileID: 201783132}
   m_Layer: 5
   m_Name: Fifth Boss Image
-  m_TagString: Untagged
+  m_TagString: BossImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2356,7 +2356,7 @@ GameObject:
   - component: {fileID: 250481923}
   m_Layer: 5
   m_Name: First Boss Image
-  m_TagString: Untagged
+  m_TagString: BossImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3975,7 +3975,7 @@ GameObject:
   - component: {fileID: 499327245}
   m_Layer: 5
   m_Name: Thrid Boss Image
-  m_TagString: Untagged
+  m_TagString: BossImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6765,7 +6765,7 @@ GameObject:
   - component: {fileID: 904499395}
   m_Layer: 5
   m_Name: Second Boss Image
-  m_TagString: Untagged
+  m_TagString: BossImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7093,6 +7093,81 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &933391748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 933391749}
+  - component: {fileID: 933391751}
+  - component: {fileID: 933391750}
+  m_Layer: 5
+  m_Name: DragImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &933391749
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933391748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1636330240}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 75.1808, y: 69.6655}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &933391750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933391748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &933391751
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933391748}
+  m_CullTransparentMesh: 1
 --- !u!1 &936409429
 GameObject:
   m_ObjectHideFlags: 0
@@ -9231,6 +9306,11 @@ MonoBehaviour:
   devilCoin: 0
   heroCoinText: {fileID: 1020697930}
   devilCoinText: {fileID: 1841929695}
+  bossOneCount: 0
+  bossTwoCount: 0
+  bossThreeCount: 0
+  bossFourCount: 0
+  bossFiveCount: 0
   monsterList: []
   slotList:
   - {fileID: 599750252}
@@ -10567,7 +10647,7 @@ GameObject:
   - component: {fileID: 1297516314}
   m_Layer: 5
   m_Name: Forth Boss Image
-  m_TagString: Untagged
+  m_TagString: BossImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12686,6 +12766,7 @@ GameObject:
   - component: {fileID: 1636330240}
   - component: {fileID: 1636330241}
   - component: {fileID: 1636330242}
+  - component: {fileID: 1636330243}
   m_Layer: 5
   m_Name: Devil
   m_TagString: Untagged
@@ -12713,6 +12794,7 @@ RectTransform:
   - {fileID: 1814261606}
   - {fileID: 319581602}
   - {fileID: 1599491053}
+  - {fileID: 933391749}
   m_Father: {fileID: 1296154130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12732,17 +12814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ce365dabd82c74f84766dfdd791204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossMonsterPrefab:
-  - {fileID: 1727609571}
-  - {fileID: 645002277}
-  - {fileID: 1255946740}
-  - {fileID: 255567054}
-  - {fileID: 114868762}
-  bossOneCount: 0
-  bossTwoCount: 0
-  bossThreeCount: 0
-  bossFourCount: 0
-  bossFiveCount: 0
   drawPannelObject: {fileID: 1814261605}
   abilityPannelObject: {fileID: 319581601}
 --- !u!114 &1636330242
@@ -12765,6 +12836,20 @@ MonoBehaviour:
   creatTimeMax: 5
   isSpecialCoolDown: 0
   isFadeAway: 0
+--- !u!114 &1636330243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636330239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900c34eefafb3f048a4b490d455f4c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragObject: {fileID: 933391748}
+  dropObject: {fileID: 2012820867}
 --- !u!1 &1637699737
 GameObject:
   m_ObjectHideFlags: 0
@@ -13738,6 +13823,7 @@ GameObject:
   - component: {fileID: 1809282058}
   - component: {fileID: 1809282060}
   - component: {fileID: 1809282063}
+  - component: {fileID: 1809282064}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -13813,6 +13899,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1742cd51b00a145b3124fb32f19963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1809282064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809282057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a32b29eb1d03a4fb02a5ce942611a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossMonsterPrefab:
+  - {fileID: 1727609571}
+  - {fileID: 645002277}
+  - {fileID: 1255946740}
+  - {fileID: 255567054}
+  - {fileID: 114868762}
+  selectBossObject: {fileID: 2012820869}
 --- !u!1 &1814261605
 GameObject:
   m_ObjectHideFlags: 0
@@ -15829,8 +15934,8 @@ GameObject:
   - component: {fileID: 2012820870}
   - component: {fileID: 2012820869}
   m_Layer: 5
-  m_Name: Image (6)
-  m_TagString: Untagged
+  m_Name: Select Boss Image
+  m_TagString: BossImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15867,7 +15972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -45,7 +45,8 @@ public class MonsterController : MonoBehaviour
    */
     IEnumerator CreateMonster()
     {
-        while(monsterCount !=20)
+        // 몬스터 소환 횟수 조절
+        while(monsterCount !=5)
         {
             GameObject monster = Instantiate(monsterPrefabs[0], wayPoints[0].transform.position, Quaternion.identity);
 
