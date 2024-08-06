@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -12,14 +13,21 @@ public class StageController : MonoBehaviour
     public float stageTime;
     public float stageMaxTime;
 
+    public TextMeshProUGUI stageText;
+    public TextMeshProUGUI stageTimeText;
+    public TextMeshProUGUI stageInfoText;
+
     private MonsterController monsterController;
     private DevilDraw devillDraw;
     private SpecialAbility specialAbility;
 
     private void Start()
     {
-        stage = 1;
+        stage = 0;
+        stageText.text = "Stage : " + stage.ToString();
         stageTime = stageMaxTime;
+        stageTimeText.text = stageTime.ToString("F2");
+        stageInfoText.text = "Game Start";
 
         monsterController = GetComponent<MonsterController>();
         devillDraw = GetComponent<DevilDraw>();
@@ -36,10 +44,14 @@ public class StageController : MonoBehaviour
     private void StageCoolDown()
     {
         stageTime -= Time.deltaTime;
-        if(stageTime <0)
+        stageTimeText.text = stageTime.ToString("F2");
+
+        if (stageTime <0)
         {
             stage++;
+            stageText.text = "Stage : " + stage.ToString();
             stageTime = stageMaxTime;
+            stageTimeText.text = stageTime.ToString("F2");
 
             GameManager.GetInstance().heroCoin += 100;
             GameManager.GetInstance().heroCoinText.text = GameManager.GetInstance().heroCoin.ToString();
@@ -53,19 +65,22 @@ public class StageController : MonoBehaviour
             if (stage % 3 == 0)
             {
                 Debug.Log("특별 능력 뽑기를 진행합니다.");
+                stageInfoText.text = "SpecialAbility Stage";
                 specialAbility.SpecialAbilityController();
-                
+
             }
 
             // 5판마다 보스스테이지 진행 외에는 몬스터소환
             if (stage % 5 == 0)
             {
                 Debug.Log("보스 스테이지를 진행합니다.");
+                stageInfoText.text = "Boss Stage";
                 devillDraw.SummonSetBoss();
             }
             else
             {
                 Debug.Log("일반 스테이지를 진행합니다.");
+                stageInfoText.text = "Basic Stage";
                 //monsterController.CreateController();
 
             }

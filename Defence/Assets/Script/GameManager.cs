@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class GameManager : MonoBehaviour
     public int devilCoin;
     public TextMeshProUGUI heroCoinText;
     public TextMeshProUGUI devilCoinText;
+    public List<TextMeshProUGUI> bossCountText;
+
+    public Image selectBossObject;
+    public int selectBossNum = 0;
 
     public int bossOneCount;
     public int bossTwoCount;
@@ -44,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         heroCoin = 100;
         heroCoinText.text = heroCoin.ToString();
-        devilCoin = 100;
+        devilCoin = 500;
         devilCoinText.text = devilCoin.ToString();
     }
 

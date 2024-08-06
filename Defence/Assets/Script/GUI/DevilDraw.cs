@@ -7,7 +7,6 @@ public class DevilDraw : MonoBehaviour
 {
 
     public List<GameObject> bossMonsterPrefab;
-    public Image selectBossObject;
 
 
     // 중간 보스 소환
@@ -15,13 +14,13 @@ public class DevilDraw : MonoBehaviour
     {
         // TODO 선택된 몬스터가 있다면, 해당 몬스터를 소환한다.
         Debug.Log("보스 소환을 진행합니다.");
-        if(selectBossObject.sprite !=null)
+        if(GameManager.GetInstance().selectBossObject.sprite !=null)
         {
             for(int i =0; i<bossMonsterPrefab.Count; i++)
             {
                 SpriteRenderer sprite = bossMonsterPrefab[i].GetComponent<SpriteRenderer>();
 
-                if (sprite.sprite == selectBossObject.sprite)
+                if (sprite.sprite == GameManager.GetInstance().selectBossObject.sprite)
                 {
                     SummonBoss(i);
                 }
@@ -36,6 +35,7 @@ public class DevilDraw : MonoBehaviour
                 Debug.Log("첫번째 보스를 소환합니다.");
                 SummonBoss(0);
                 GameManager.GetInstance().bossOneCount--;
+                GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossOneCount.ToString();
             }
             else
             {
@@ -45,6 +45,7 @@ public class DevilDraw : MonoBehaviour
                     Debug.Log("두번째 보스를 소환합니다.");
                     SummonBoss(1);
                     GameManager.GetInstance().bossTwoCount--;
+                    GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossTwoCount.ToString();
                 }
                 else
                 {
@@ -54,6 +55,7 @@ public class DevilDraw : MonoBehaviour
                         Debug.Log("세번째 보스를 소환합니다.");
                         SummonBoss(2);
                         GameManager.GetInstance().bossThreeCount--;
+                        GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossThreeCount.ToString();
                     }
                     else
                     {
@@ -63,6 +65,7 @@ public class DevilDraw : MonoBehaviour
                             Debug.Log("네번째 보스를 소환합니다.");
                             SummonBoss(3);
                             GameManager.GetInstance().bossFourCount--;
+                            GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossFourCount.ToString();
                         }
                         else
                         {
@@ -72,6 +75,7 @@ public class DevilDraw : MonoBehaviour
                                 Debug.Log("5번째 보스를 소환합니다.");
                                 SummonBoss(4);
                                 GameManager.GetInstance().bossFiveCount--;
+                                GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossFiveCount.ToString();
                             }
                             else
                             {
@@ -79,6 +83,8 @@ public class DevilDraw : MonoBehaviour
                                 Debug.Log("가진 재화가 없어 기본 등급 보스가 소환됩니다.");
                                 SummonBoss(0);
                                 // TODO 재화 소모 추가하기.
+                                GameManager.GetInstance().devilCoin -= 100;
+                                GameManager.GetInstance().devilCoinText.text = GameManager.GetInstance().devilCoin.ToString();
 
                             }
                         }
@@ -89,7 +95,8 @@ public class DevilDraw : MonoBehaviour
         }
 
         // 소환이 끝나면 비워준다.
-        selectBossObject.sprite = null;
+        GameManager.GetInstance().selectBossObject.sprite = null;
+        GameManager.GetInstance().selectBossNum = 0;
     }
 
 
