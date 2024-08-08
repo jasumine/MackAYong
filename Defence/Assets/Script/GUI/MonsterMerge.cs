@@ -6,14 +6,18 @@ using UnityEngine.UI;
 
 public class MonsterMerge : MonoBehaviour, IPointerClickHandler
 {
+    public Image heroBossImage;
+
     public Color highligtColor = Color.blue;
     public Color defaultcolor = Color.white;
+
 
     private float doubleClickedTime = 0.3f;
     private float lastTime = -1f;
 
     private Coroutine highlightCoroutine;
     private GameObject lastClickObject;
+    
 
     // 싱글 클릭의 경우 하이라이트 표시
     // 더블 클릭의 경우 object tag에 따라서 다르게 처리한다.
@@ -48,12 +52,13 @@ public class MonsterMerge : MonoBehaviour, IPointerClickHandler
     {
         // 싱글 클릭 - 하이라이트 표시
         // 기존에 클릭해둔 오브젝트가 있다면 하이라이트 표시를 꺼준다.
-        if(lastClickObject != null)
-        {
-            Image lastImage = lastClickObject.GetComponent<Image>();
+        //if(lastClickObject != null)
+        //{
+        //    Image lastImage = lastClickObject.GetComponent<Image>();
 
-           lastImage.color = defaultcolor;
-        }
+        //   lastImage.color = defaultcolor;
+        //    lastClickObject = null;
+        //}
 
         // 다른 이미지는 클릭되면 안되기때문에 태그로 구분해준다.
         if(eventObject.tag == "DropImage" || eventObject.tag == "FirstBoss" || eventObject.tag == "SecondBoss"
@@ -138,6 +143,7 @@ public class MonsterMerge : MonoBehaviour, IPointerClickHandler
 
                     }
                     GameManager.GetInstance().selectBossObject.sprite = null;
+                    heroBossImage.sprite = null;
                     GameManager.GetInstance().selectBossNum = 0;
                 }
                 break;

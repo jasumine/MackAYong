@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MonsterDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public Image heroBossImage;
 
     public GameObject dragObject;
     private int dragbossNum;
@@ -203,6 +204,7 @@ public class MonsterDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
                 // 현재 보스의 이미지를 넣어주고, selectBossNum dragNum으로 바꾸어준다.
                 dropImage.sprite = dragImage.sprite;
+                heroBossImage.sprite = dragImage.sprite;
                 GameManager.GetInstance().selectBossNum = dragbossNum;
 
             }

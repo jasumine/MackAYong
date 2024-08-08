@@ -215,7 +215,7 @@ public class Slot : MonoBehaviour
             GameManager.GetInstance().heroCoin -= fifthStatCost;
             GameManager.GetInstance().heroCoinText.text = GameManager.GetInstance().heroCoin.ToString();
             fifthStatCost += 20;
-            firstStatCostText.text = firstStatCost.ToString();
+            fifthStatCostText.text = fifthStatCost.ToString();
 
             SoldierStat soldierStat = GameManager.GetInstance().soliderPrefabList[4].GetComponent<SoldierStat>();
 

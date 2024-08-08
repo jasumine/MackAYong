@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DevilDraw : MonoBehaviour
 {
-
+    public Image heroBossImage;
     public List<GameObject> bossMonsterPrefab;
 
 
@@ -97,6 +97,7 @@ public class DevilDraw : MonoBehaviour
         // 소환이 끝나면 비워준다.
         GameManager.GetInstance().selectBossObject.sprite = null;
         GameManager.GetInstance().selectBossNum = 0;
+        heroBossImage.sprite = null;
     }
 
 

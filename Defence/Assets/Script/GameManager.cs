@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject heroUI;
+    public GameObject heroCamera;
+    public GameObject devilUI;
+    public GameObject devilCamera;
+
     public int heroCoin;
     public int devilCoin;
     public TextMeshProUGUI heroCoinText;
@@ -76,4 +81,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    public void HeroActiveTure()
+    {
+        // 마왕 ui와 카메라를 끄고,
+        devilUI.SetActive(false);
+        devilCamera.SetActive(false);
+
+        // 모험가 ui와 카메라를 킨다.
+        heroUI.SetActive(true);
+        heroCamera.SetActive(true);
+    }
+
+    public void DevilActiveTrue()
+    {
+        // 모험가 ui와 카메라를 끄고,
+        heroUI.SetActive(false);
+        heroCamera.SetActive(false);
+
+        // 마왕 ui와 카메라를 킨다.
+        devilUI.SetActive(true);
+        devilCamera.SetActive(true);
+    }
 }

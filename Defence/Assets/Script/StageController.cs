@@ -81,7 +81,7 @@ public class StageController : MonoBehaviour
             {
                 Debug.Log("일반 스테이지를 진행합니다.");
                 stageInfoText.text = "Basic Stage";
-                //monsterController.CreateController();
+                monsterController.CreateController();
 
             }
         }
@@ -100,6 +100,22 @@ public class StageController : MonoBehaviour
                 gate[0].SetActive(false);
                 gate.RemoveAt(0);
                 Debug.Log("문이 부셔졌습니다.");
+
+                switch(gate.Count)
+                {
+                    // 2개 남은 경우 - 문이 1개 부숴짐
+                    case 2:
+                        GameManager.GetInstance().devilCoin += 500;
+                        break;
+                    // 1개 남은 경우 - 문이 2개 부숴짐
+                    case 1:
+                        GameManager.GetInstance().devilCoin += 1000;
+                        break;
+                    case 0:
+                        GameManager.GetInstance().devilCoin += 1500;
+                        break;
+                }
+                GameManager.GetInstance().devilCoinText.text = GameManager.GetInstance().devilCoin.ToString();
             }
         }
 
