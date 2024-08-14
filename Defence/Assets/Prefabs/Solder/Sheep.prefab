@@ -176,7 +176,7 @@ MonoBehaviour:
   myName: Sheep
   level: 1
   targetType: 0
-  attackSpeed: 1
+  attackSpeed: 2
   curAttackSpeed: 0
   isDragging: 0
   isMerge: 0

@@ -5,8 +5,6 @@ using UnityEngine;
 public class MonsterController : MonoBehaviour
 {
     // 몬스터 생성을 담당하는 클래스
-    public List<GameObject> monsterPrefabs;
-
     public List<Transform> wayPoints;
 
     public GameObject monsterParent;
@@ -50,13 +48,13 @@ public class MonsterController : MonoBehaviour
     IEnumerator CreateMonster()
     {
         // CreateMonster를 할 때마다, hp가 증가한다.
-        MonsterStat monStat= monsterPrefabs[0].GetComponent<MonsterStat>();
+        MonsterStat monStat= GameManager.GetInstance().monsterPrefabs[0].GetComponent<MonsterStat>();
         monStat.maxHp += monsterHpUp * monsterHpAmount;
 
         // 몬스터 소환 횟수 조절
         while (monsterCount != monsterCountMax)
         {
-            GameObject monster = Instantiate(monsterPrefabs[0], wayPoints[0].transform.position, Quaternion.identity);
+            GameObject monster = Instantiate(GameManager.GetInstance().monsterPrefabs[0], wayPoints[0].transform.position, Quaternion.identity);
 
             Monster monsterScript = monster.GetComponent<Monster>();
             monsterScript.wayPoints.Add(wayPoints[0]);

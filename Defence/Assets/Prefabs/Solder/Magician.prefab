@@ -176,8 +176,8 @@ MonoBehaviour:
   myName: Magician
   level: 1
   targetType: 0
-  attackSpeed: 1
-  curAttackSpeed: 2
+  attackSpeed: 2
+  curAttackSpeed: 1
   isDragging: 0
   isMerge: 0
   canMerge: 0

@@ -114,30 +114,30 @@ public class MonsterMerge : MonoBehaviour, IPointerClickHandler
                     switch (GameManager.GetInstance().selectBossNum)
                     {
                         case 1:
-                            GameManager.GetInstance().bossOneCount++;
-                            GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossOneCount.ToString();
+                            GameManager.GetInstance().bossCount[0]++;
+                            GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossCount[0].ToString();
                             break;
 
                         case 2:
-                            GameManager.GetInstance().bossTwoCount++;
-                            GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossTwoCount.ToString();
+                            GameManager.GetInstance().bossCount[1]++;
+                            GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossCount[1].ToString();
                             break;
 
                         case 3:
-                            GameManager.GetInstance().bossThreeCount++;
-                            GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossThreeCount.ToString();
+                            GameManager.GetInstance().bossCount[2]++;
+                            GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossCount[2].ToString();
 
                             break;
 
                         case 4:
-                            GameManager.GetInstance().bossFourCount++;
-                            GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossFourCount.ToString();
+                            GameManager.GetInstance().bossCount[3]++;
+                            GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossCount[3].ToString();
 
                             break;
 
                         case 5:
-                            GameManager.GetInstance().bossFiveCount++;
-                            GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossFiveCount.ToString();
+                            GameManager.GetInstance().bossCount[4]++;
+                            GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossCount[4].ToString();
 
                             break;
 
@@ -151,39 +151,39 @@ public class MonsterMerge : MonoBehaviour, IPointerClickHandler
             // 보스 합성 - 5마리를 1단계 높은 1단계로 상승시켜준다. 마지막 단계는 합성 불가능
             // 1단계 5마리 = 2단계 1마리
             case "FirstBoss":
-                if(GameManager.GetInstance().bossOneCount >=5)
+                if(GameManager.GetInstance().bossCount[0] >= 5)
                 {
-                    GameManager.GetInstance().bossOneCount -= 5;
-                    GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossOneCount.ToString();
-                    GameManager.GetInstance().bossTwoCount++;
-                    GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossTwoCount.ToString();
+                    GameManager.GetInstance().bossCount[0] -= 5;
+                    GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossCount[0].ToString();
+                    GameManager.GetInstance().bossCount[1]++;
+                    GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossCount[1].ToString();
                 }
                 break;
             case "SecondBoss":
-                if (GameManager.GetInstance().bossTwoCount >= 5)
+                if (GameManager.GetInstance().bossCount[1] >= 5)
                 {
-                    GameManager.GetInstance().bossTwoCount -= 5;
-                    GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossTwoCount.ToString();
-                    GameManager.GetInstance().bossThreeCount++;
-                    GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossThreeCount.ToString();
+                    GameManager.GetInstance().bossCount[1] -= 5;
+                    GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossCount[1].ToString();
+                    GameManager.GetInstance().bossCount[2]++;
+                    GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossCount[2].ToString();
                 }
                 break;
             case "ThirdBoss":
-                if (GameManager.GetInstance().bossThreeCount >= 5)
+                if (GameManager.GetInstance().bossCount[2] >= 5)
                 {
-                    GameManager.GetInstance().bossThreeCount -= 5;
-                    GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossThreeCount.ToString();
-                    GameManager.GetInstance().bossFourCount++;
-                    GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossFourCount.ToString();
+                    GameManager.GetInstance().bossCount[2] -= 5;
+                    GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossCount[2].ToString();
+                    GameManager.GetInstance().bossCount[3]++;
+                    GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossCount[3].ToString();
                 }
                 break;
             case "FourthBoss":
-                if (GameManager.GetInstance().bossFourCount >= 5)
+                if (GameManager.GetInstance().bossCount[3] >= 5)
                 {
-                    GameManager.GetInstance().bossFourCount -= 5;
-                    GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossFourCount.ToString();
-                    GameManager.GetInstance().bossFiveCount++;
-                    GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossFiveCount.ToString();
+                    GameManager.GetInstance().bossCount[3] -= 5;
+                    GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossCount[3].ToString();
+                    GameManager.GetInstance().bossCount[4]++;
+                    GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossCount[4].ToString();
                 }
                 break;
         }

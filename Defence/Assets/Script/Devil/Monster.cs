@@ -3,15 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum MonsterType
-{
-    basic,
-    special,
-    boss
-}
-
-
-
 public enum MonsterState
 { 
     move,
@@ -20,11 +11,9 @@ public enum MonsterState
 }
 
 
-
 public class Monster : MonoBehaviour
 {
     public MonsterState monsterState;
-    public MonsterType monsterType;
 
     // 몬스터는 생성되면 도착지까지 계속 걸어간다.
     // 몬스터의 이동경로위치
@@ -129,7 +118,7 @@ public class Monster : MonoBehaviour
         GameManager.GetInstance().devilCoinText.text = GameManager.GetInstance().devilCoin.ToString();
 
 
-        if (monsterType == MonsterType.special || monsterType == MonsterType.boss)
+        if (mStat.monsterType == MonsterType.special || mStat.monsterType == MonsterType.boss)
         {
             this.gameObject.SetActive(false);
         }

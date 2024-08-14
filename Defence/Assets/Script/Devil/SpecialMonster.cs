@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class SpecialMonster : MonoBehaviour
 {
-    public GameObject bossObject;
-
     public GameObject summonBotton;
 
     public float coolTime;
@@ -34,7 +32,7 @@ public class SpecialMonster : MonoBehaviour
 
         if (isFadeAway == false && coolTime < 0 )
         {
-            bossObject.SetActive(false);
+            GameManager.GetInstance().monsterPrefabs[6].SetActive(false);
             creatTime = creatTimeMax;
             isFadeAway = true;
             Debug.Log("특별 몬스터가 시간이 지남에 따라 사라집니다.");
@@ -63,13 +61,13 @@ public void SpecialBossDraw()
             summonBotton.SetActive(false);
             Debug.Log("특별 몬스터를 소환 했습니다.");
 
-            bossObject.SetActive(true);
-            GameManager.instance.monsterList.Add(bossObject);
+            GameManager.GetInstance().monsterPrefabs[6].SetActive(true);
+            GameManager.instance.monsterList.Add(GameManager.GetInstance().monsterPrefabs[6]);
 
-            Monster monsterScript = bossObject.GetComponent<Monster>();
-            MonsterStat monsterStat = bossObject.GetComponent<MonsterStat>();
+            Monster monsterScript = GameManager.GetInstance().monsterPrefabs[6].GetComponent<Monster>();
+            MonsterStat monsterStat = GameManager.GetInstance().monsterPrefabs[6].GetComponent<MonsterStat>();
             monsterStat.curHp = monsterStat.maxHp;
-            bossObject.transform.position = monsterScript.wayPoints[0].position;
+            GameManager.GetInstance().monsterPrefabs[6].transform.position = monsterScript.wayPoints[0].position;
             monsterScript.targetPoint = monsterScript.wayPoints[1];
             monsterScript.monsterState = MonsterState.move;
 

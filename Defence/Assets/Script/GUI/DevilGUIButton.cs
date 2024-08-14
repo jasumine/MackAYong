@@ -8,7 +8,6 @@ public class DevilGUIButton : MonoBehaviour
     private int goldCount;
     private int perCount;
 
-
     public List<int> bossDrawCost;
     public List<TextMeshProUGUI> bossCostText;
 
@@ -56,9 +55,9 @@ public class DevilGUIButton : MonoBehaviour
             GameManager.GetInstance().devilCoin -= bossDrawCost[0];
             GameManager.GetInstance().devilCoinText.text = GameManager.GetInstance().devilCoin.ToString();
 
-            GameManager.GetInstance().bossOneCount++;
-            GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossOneCount.ToString();
-            Debug.Log("일반 몬스터를 소환했습니다. 일반 몬스터 수 : " + GameManager.GetInstance().bossOneCount);
+            GameManager.GetInstance().bossCount[0]++;
+            GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossCount[0].ToString();
+            Debug.Log("일반 몬스터를 소환했습니다. 일반 몬스터 수 : " + GameManager.GetInstance().bossCount[0]);
         }
     }
 
@@ -74,9 +73,9 @@ public class DevilGUIButton : MonoBehaviour
 
             if (0 <= bossNum && bossNum < DrawPercent[0])
             {
-                GameManager.GetInstance().bossTwoCount++;
-                GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossTwoCount.ToString();
-                Debug.Log("희귀 몬스터를 소환했습니다. 희귀 몬스터 수 : " + GameManager.GetInstance().bossTwoCount);
+                GameManager.GetInstance().bossCount[1]++;
+                GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossCount[1].ToString();
+                Debug.Log("희귀 몬스터를 소환했습니다. 희귀 몬스터 수 : " + GameManager.GetInstance().bossCount[1]);
             }
             else
             {
@@ -97,9 +96,9 @@ public class DevilGUIButton : MonoBehaviour
 
             if (0 <= bossNum && bossNum < DrawPercent[1])
             {
-                GameManager.GetInstance().bossThreeCount++;
-                GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossThreeCount.ToString();
-                Debug.Log("영웅 몬스터를 소환했습니다. 영웅 몬스터 수 : " + GameManager.GetInstance().bossThreeCount);
+                GameManager.GetInstance().bossCount[2]++;
+                GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossCount[2].ToString();
+                Debug.Log("영웅 몬스터를 소환했습니다. 영웅 몬스터 수 : " + GameManager.GetInstance().bossCount[2]);
             }
             else
             {
@@ -120,9 +119,9 @@ public class DevilGUIButton : MonoBehaviour
 
             if (0 <= bossNum && bossNum < DrawPercent[2])
             {
-                GameManager.GetInstance().bossFourCount++;
-                GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossFourCount.ToString();
-                Debug.Log("전설 몬스터를 소환했습니다. 전설 몬스터 수 : " + GameManager.GetInstance().bossFourCount);
+                GameManager.GetInstance().bossCount[3]++;
+                GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossCount[3].ToString();
+                Debug.Log("전설 몬스터를 소환했습니다. 전설 몬스터 수 : " + GameManager.GetInstance().bossCount[3]);
             }
             else
             {
@@ -144,9 +143,9 @@ public class DevilGUIButton : MonoBehaviour
 
             if (0 <= bossNum && bossNum < DrawPercent[3])
             {
-                GameManager.GetInstance().bossFiveCount++;
-                GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossFiveCount.ToString();
-                Debug.Log("신화 몬스터를 소환했습니다. 신화 몬스터 수 : " + GameManager.GetInstance().bossFiveCount);
+                GameManager.GetInstance().bossCount[4]++;
+                GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossCount[4].ToString();
+                Debug.Log("신화 몬스터를 소환했습니다. 신화 몬스터 수 : " + GameManager.GetInstance().bossCount[4]);
             }
             else
             {
@@ -170,14 +169,31 @@ public class DevilGUIButton : MonoBehaviour
             AbilityCost[0] += 10;
             AbilityCostText[0].text = AbilityCost[0].ToString();
 
+            // 몬스터의 기본 능력을 증가 시켜준다.
+            for(int i = 0; i < GameManager.GetInstance().monsterPrefabs.Count; i++)
+            {
+                // 몬스터 마다 기본 maxHp가 다르기 때문에 각각 가져와서 증가 시킨다.
+                MonsterStat mStat = GameManager.GetInstance().monsterPrefabs[i].GetComponent<MonsterStat>();
+
+                float value = mStat.maxHp * 0.1f; // 10%
+                mStat.maxHp += value;
+            }
+
+
             // 현재 소환된 몬스터의 능력을 올려준다.
             for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
             {
                 MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
 
-                mStat.curHp++;
-                mStat.maxHp++;
+                float value = mStat.maxHp * 0.1f; // 10%
+                mStat.curHp += value;
+                // 기본타입이 아닌 경우 이미 위에서 증가 시켰기 때문에 구분을 해준다.
+                if (mStat.monsterType == MonsterType.basic)
+                {
+                    mStat.maxHp += value;
+                }
             }
+
             Debug.Log("hp를 증가합니다.");
         }
 
@@ -196,12 +212,29 @@ public class DevilGUIButton : MonoBehaviour
             AbilityCost[1] += 10;
             AbilityCostText[1].text = AbilityCost[1].ToString();
 
+            // 몬스터의 기본 능력을 증가 시켜준다.
+            for (int i = 0; i < GameManager.GetInstance().monsterPrefabs.Count; i++)
+            {
+                // 몬스터 마다 기본 maxHp가 다르기 때문에 각각 가져와서 증가 시킨다.
+                MonsterStat mStat = GameManager.GetInstance().monsterPrefabs[i].GetComponent<MonsterStat>();
+
+                float value = mStat.speed * 0.01f; // 1%
+                mStat.speed += value;
+            }
+
+
+
             // 현재 소환된 몬스터의 능력을 올려준다.
             for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
             {
                 MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
 
-                mStat.speed++;
+                float value = mStat.speed * 0.01f; // 1%
+                // 기본타입이 아닌 경우 이미 위에서 증가 시켰기 때문에 구분을 해준다.
+                if (mStat.monsterType==MonsterType.basic)
+                {
+                    mStat.speed += value;
+                }
             }
             Debug.Log("속도를 증가합니다.");
         }
@@ -220,12 +253,29 @@ public class DevilGUIButton : MonoBehaviour
             AbilityCost[2] += 10;
             AbilityCostText[2].text = AbilityCost[2].ToString();
 
+            // 몬스터의 기본 능력을 증가 시켜준다.
+            for (int i = 0; i < GameManager.GetInstance().monsterPrefabs.Count; i++)
+            {
+                // 몬스터 마다 기본 maxHp가 다르기 때문에 각각 가져와서 증가 시킨다.
+                MonsterStat mStat = GameManager.GetInstance().monsterPrefabs[i].GetComponent<MonsterStat>();
+
+                float value = mStat.attackSpeed * 0.01f; // 1%
+                mStat.attackSpeed += value;
+            }
+
+
+
             // 현재 소환된 몬스터의 능력을 올려준다.
             for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
             {
                 MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
 
-                mStat.attackSpeed++;
+                float value = mStat.speed * 0.01f; // 1%
+                // 기본타입이 아닌 경우 이미 위에서 증가 시켰기 때문에 구분을 해준다.
+                if (mStat.monsterType == MonsterType.basic)
+                {
+                    mStat.attackSpeed += value;
+                }
             }
             Debug.Log("공격속도를 증가합니다.");
         }

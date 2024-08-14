@@ -29,10 +29,12 @@ public class SoldierStat : MonoBehaviour
 
     public TargetType targetType;
 
-    public float attackSpeed;
+    public float attackSpeed = 2;
     public float curAttackSpeed;
 
     public bool isDragging = false;
     public bool isMerge = false;
     public bool canMerge = false;
+
+
 }

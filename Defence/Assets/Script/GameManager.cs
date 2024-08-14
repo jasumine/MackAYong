@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     public GameObject heroUI;
     public GameObject heroCamera;
     public GameObject devilUI;
@@ -15,20 +17,17 @@ public class GameManager : MonoBehaviour
     public int devilCoin;
     public TextMeshProUGUI heroCoinText;
     public TextMeshProUGUI devilCoinText;
-    public List<TextMeshProUGUI> bossCountText;
+
     public int monsterCoin;
 
     public Image selectBossObject;
     public int selectBossNum = 0;
 
-    public int bossOneCount;
-    public int bossTwoCount;
-    public int bossThreeCount;
-    public int bossFourCount;
-    public int bossFiveCount;
+    public List<int> bossCount;
+    public List<TextMeshProUGUI> bossCountText;
 
     public List<GameObject> monsterList;
-    public static GameManager instance;
+    public List<GameObject> monsterPrefabs;
 
     public List<GameObject> slotList;
     public List<GameObject> soliderPrefabList;
@@ -57,6 +56,11 @@ public class GameManager : MonoBehaviour
         heroCoinText.text = heroCoin.ToString();
         devilCoin = 500;
         devilCoinText.text = devilCoin.ToString();
+
+        for(int i = 0; i<5; i++)
+        {
+            bossCount.Add(0);
+        }
     }
 
 

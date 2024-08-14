@@ -81,14 +81,17 @@ public class Slot : MonoBehaviour
 
             SoldierStat soldierStat = GameManager.GetInstance().soliderPrefabList[0].GetComponent<SoldierStat>();
 
-            soldierStat.curAttackSpeed++;
+            float value = soldierStat.attackSpeed * 0.1f;
+            soldierStat.attackSpeed -= value;
 
             for (int i = 0; i < GameManager.GetInstance().firstSoliderList.Count; i++)
             {
                 if (GameManager.GetInstance().firstSoliderList[i] != null)
                 {
                     soldierStat = GameManager.GetInstance().firstSoliderList[i].gameObject.GetComponent<SoldierStat>();
-                    soldierStat.attackSpeed--;
+
+                    // prefab Stat을 기준으로 올린다.
+                    soldierStat.attackSpeed -= value;
                 }
                 else
                 {
@@ -115,14 +118,17 @@ public class Slot : MonoBehaviour
 
             SoldierStat soldierStat = GameManager.GetInstance().soliderPrefabList[1].GetComponent<SoldierStat>();
 
-            soldierStat.curAttackSpeed++;
+            float value = soldierStat.attackSpeed * 0.1f;
+            soldierStat.attackSpeed -= value;
 
             for (int i = 0; i < GameManager.GetInstance().secondSoliderList.Count; i++)
             {
                 if (GameManager.GetInstance().secondSoliderList[i] != null)
                 {
                     soldierStat = GameManager.GetInstance().secondSoliderList[i].gameObject.GetComponent<SoldierStat>();
-                    soldierStat.attackSpeed--;
+
+                    // prefab Stat을 기준으로 올린다.
+                    soldierStat.attackSpeed -= value;
                 }
                 else
                 {
@@ -151,14 +157,17 @@ public class Slot : MonoBehaviour
 
             SoldierStat soldierStat = GameManager.GetInstance().soliderPrefabList[2].GetComponent<SoldierStat>();
 
-            soldierStat.curAttackSpeed++;
+            float value = soldierStat.attackSpeed * 0.1f;
+            soldierStat.attackSpeed -= value;
 
             for (int i = 0; i < GameManager.GetInstance().thirdSoliderList.Count; i++)
             {
                 if (GameManager.GetInstance().thirdSoliderList[i] != null)
                 {
                     soldierStat = GameManager.GetInstance().thirdSoliderList[i].gameObject.GetComponent<SoldierStat>();
-                    soldierStat.attackSpeed--;
+
+                    // prefab Stat을 기준으로 올린다.
+                    soldierStat.attackSpeed -= value;
                 }
                 else
                 {
@@ -185,14 +194,17 @@ public class Slot : MonoBehaviour
 
             SoldierStat soldierStat = GameManager.GetInstance().soliderPrefabList[3].GetComponent<SoldierStat>();
 
-            soldierStat.curAttackSpeed++;
+            float value = soldierStat.attackSpeed * 0.1f;
+            soldierStat.attackSpeed -= value;
 
             for (int i = 0; i < GameManager.GetInstance().forthSoliderList.Count; i++)
             {
                 if (GameManager.GetInstance().forthSoliderList[i] != null)
                 {
                     soldierStat = GameManager.GetInstance().forthSoliderList[i].gameObject.GetComponent<SoldierStat>();
-                    soldierStat.attackSpeed--;
+                    
+                    // prefab Stat을 기준으로 올린다.
+                    soldierStat.attackSpeed -= value;
                 }
                 else
                 {
@@ -219,14 +231,17 @@ public class Slot : MonoBehaviour
 
             SoldierStat soldierStat = GameManager.GetInstance().soliderPrefabList[4].GetComponent<SoldierStat>();
 
-            soldierStat.curAttackSpeed++;
+            float value = soldierStat.attackSpeed * 0.1f;
+            soldierStat.attackSpeed -= value;
 
             for (int i = 0; i < GameManager.GetInstance().fifthSoliderList.Count; i++)
             {
                 if (GameManager.GetInstance().fifthSoliderList[i] != null)
                 {
                     soldierStat = GameManager.GetInstance().fifthSoliderList[i].gameObject.GetComponent<SoldierStat>();
-                    soldierStat.attackSpeed--;
+                    
+                    // prefab Stat을 기준으로 올린다.
+                    soldierStat.attackSpeed -= value;
                 }
                 else
                 {

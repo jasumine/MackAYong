@@ -76,6 +76,12 @@ public class Soldier : MonoBehaviour
                     SoldierStat mergeSoldierStat = mergesoldier.GetComponent<SoldierStat>();
                     mergeSoldierStat.level = soldierStat.level + 1;
 
+                    // 레벨업에 따른 추가 스탯
+                    if(mergeSoldierStat.level > 1)
+                    {
+                        mergeSoldierStat.attackSpeed -= ((mergeSoldierStat.level-1) * 0.1f);
+                    }
+
 
                     // 4. 현재 오브젝트를 지운다.
                     Destroy(this.gameObject);

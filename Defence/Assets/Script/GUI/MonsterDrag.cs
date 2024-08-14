@@ -31,7 +31,7 @@ public class MonsterDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         switch(eventObject.gameObject.tag)
         {
             case "FirstBoss":
-                if(GameManager.GetInstance().bossOneCount>0)
+                if(GameManager.GetInstance().bossCount[0] > 0)
                 {
                     //Debug.Log("중간보스 이미지를 복사합니다.");
                     dragObject.SetActive(true);
@@ -47,7 +47,7 @@ public class MonsterDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 break;
 
             case "SecondBoss":
-                if (GameManager.GetInstance().bossTwoCount > 0)
+                if (GameManager.GetInstance().bossCount[1] > 0)
                 {
                     //Debug.Log("중간보스 이미지를 복사합니다.");
                     dragObject.SetActive(true);
@@ -62,7 +62,7 @@ public class MonsterDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 break;
 
             case "ThirdBoss":
-                if (GameManager.GetInstance().bossThreeCount > 0)
+                if (GameManager.GetInstance().bossCount[2] > 0)
                 {
                     //Debug.Log("중간보스 이미지를 복사합니다.");
                     dragObject.SetActive(true);
@@ -77,7 +77,7 @@ public class MonsterDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 break;
 
             case "FourthBoss":
-                if (GameManager.GetInstance().bossFourCount > 0)
+                if (GameManager.GetInstance().bossCount[3] > 0)
                 {
                     //Debug.Log("중간보스 이미지를 복사합니다.");
                     dragObject.SetActive(true);
@@ -92,7 +92,7 @@ public class MonsterDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 break;
 
             case "FifthBoss":
-                if (GameManager.GetInstance().bossFiveCount > 0)
+                if (GameManager.GetInstance().bossCount[4] > 0)
                 {
                     //Debug.Log("중간보스 이미지를 복사합니다.");
                     dragObject.SetActive(true);
@@ -139,30 +139,30 @@ public class MonsterDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                     switch(GameManager.GetInstance().selectBossNum)
                     {
                         case 1:
-                            GameManager.GetInstance().bossOneCount++;
-                            GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossOneCount.ToString();
+                            GameManager.GetInstance().bossCount[0]++;
+                            GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossCount[0].ToString();
                             break;
 
                         case 2:
-                            GameManager.GetInstance().bossTwoCount++;
-                            GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossTwoCount.ToString();
+                            GameManager.GetInstance().bossCount[1]++;
+                            GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossCount[1].ToString();
                             break;
 
                         case 3:
-                            GameManager.GetInstance().bossThreeCount++;
-                            GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossThreeCount.ToString();
+                            GameManager.GetInstance().bossCount[2]++;
+                            GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossCount[2].ToString();
 
                             break;
 
                         case 4:
-                            GameManager.GetInstance().bossFourCount++;
-                            GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossFourCount.ToString();
+                            GameManager.GetInstance().bossCount[3]++;
+                            GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossCount[3].ToString();
 
                             break;
 
                         case 5:
-                            GameManager.GetInstance().bossFiveCount++;
-                            GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossFiveCount.ToString();
+                            GameManager.GetInstance().bossCount[4]++;
+                            GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossCount[4].ToString();
 
                             break;
 
@@ -173,31 +173,31 @@ public class MonsterDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 switch(dragbossNum)
                 {
                     case 1:
-                        GameManager.GetInstance().bossOneCount--;
-                        GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossOneCount.ToString();
+                        GameManager.GetInstance().bossCount[0]--;
+                        GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossCount[0].ToString();
                         break;
 
                     case 2:
-                        GameManager.GetInstance().bossTwoCount--;
-                        GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossTwoCount.ToString();
+                        GameManager.GetInstance().bossCount[1]--;
+                        GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossCount[1].ToString();
 
                         break;
 
                     case 3:
-                        GameManager.GetInstance().bossThreeCount--;
-                        GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossThreeCount.ToString();
+                        GameManager.GetInstance().bossCount[2]--;
+                        GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossCount[2].ToString();
 
                         break;
 
                     case 4:
-                        GameManager.GetInstance().bossFourCount--;
-                        GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossFourCount.ToString();
+                        GameManager.GetInstance().bossCount[3]--;
+                        GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossCount[3].ToString();
 
                         break;
 
                     case 5:
-                        GameManager.GetInstance().bossFiveCount--;
-                        GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossFiveCount.ToString();
+                        GameManager.GetInstance().bossCount[4]--;
+                        GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossCount[4].ToString();
 
                         break;
                 }

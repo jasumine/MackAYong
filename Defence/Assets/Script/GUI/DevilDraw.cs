@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class DevilDraw : MonoBehaviour
 {
     public Image heroBossImage;
-    public List<GameObject> bossMonsterPrefab;
 
     public int monsterHpUp = -1;
     public int monsterHpAmount = 50;
@@ -18,9 +17,9 @@ public class DevilDraw : MonoBehaviour
         Debug.Log("보스 소환을 진행합니다.");
         if(GameManager.GetInstance().selectBossObject.sprite !=null)
         {
-            for(int i =0; i<bossMonsterPrefab.Count; i++)
+            for(int i =0; i< GameManager.GetInstance().monsterPrefabs.Count; i++)
             {
-                SpriteRenderer sprite = bossMonsterPrefab[i].GetComponent<SpriteRenderer>();
+                SpriteRenderer sprite = GameManager.GetInstance().monsterPrefabs[i].GetComponent<SpriteRenderer>();
 
                 if (sprite.sprite == GameManager.GetInstance().selectBossObject.sprite)
                 {
@@ -32,52 +31,52 @@ public class DevilDraw : MonoBehaviour
         else
         {
             // 1단계
-            if (GameManager.GetInstance().bossOneCount != 0)
+            if (GameManager.GetInstance().bossCount[0] != 0)
             {
                 Debug.Log("첫번째 보스를 소환합니다.");
                 SummonBoss(0);
-                GameManager.GetInstance().bossOneCount--;
-                GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossOneCount.ToString();
+                GameManager.GetInstance().bossCount[0]--;
+                GameManager.GetInstance().bossCountText[0].text = GameManager.GetInstance().bossCount[0].ToString();
             }
             else
             {
                 // 2단계
-                if (GameManager.GetInstance().bossTwoCount != 0)
+                if (GameManager.GetInstance().bossCount[1] != 0)
                 {
                     Debug.Log("두번째 보스를 소환합니다.");
                     SummonBoss(1);
-                    GameManager.GetInstance().bossTwoCount--;
-                    GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossTwoCount.ToString();
+                    GameManager.GetInstance().bossCount[1]--;
+                    GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossCount[1].ToString();
                 }
                 else
                 {
                     // 3단계
-                    if (GameManager.GetInstance().bossThreeCount != 0)
+                    if (GameManager.GetInstance().bossCount[2] != 0)
                     {
                         Debug.Log("세번째 보스를 소환합니다.");
                         SummonBoss(2);
-                        GameManager.GetInstance().bossThreeCount--;
-                        GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossThreeCount.ToString();
+                        GameManager.GetInstance().bossCount[2]--;
+                        GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossCount[2].ToString();
                     }
                     else
                     {
                         // 4단계
-                        if (GameManager.GetInstance().bossFourCount != 0)
+                        if (GameManager.GetInstance().bossCount[3] != 0)
                         {
                             Debug.Log("네번째 보스를 소환합니다.");
                             SummonBoss(3);
-                            GameManager.GetInstance().bossFourCount--;
-                            GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossFourCount.ToString();
+                            GameManager.GetInstance().bossCount[3]--;
+                            GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossCount[3].ToString();
                         }
                         else
                         {
                             // 5단계
-                            if (GameManager.GetInstance().bossFiveCount != 0)
+                            if (GameManager.GetInstance().bossCount[4] != 0)
                             {
                                 Debug.Log("5번째 보스를 소환합니다.");
                                 SummonBoss(4);
-                                GameManager.GetInstance().bossFiveCount--;
-                                GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossFiveCount.ToString();
+                                GameManager.GetInstance().bossCount[4]--;
+                                GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossCount[4].ToString();
                             }
                             else
                             {
@@ -108,16 +107,16 @@ public class DevilDraw : MonoBehaviour
         monsterHpUp++;
 
         Debug.Log(num + "번째 중간 보스를 소환합니다.");
-        bossMonsterPrefab[num].SetActive(true);
-        GameManager.instance.monsterList.Add(bossMonsterPrefab[num]);
+        GameManager.GetInstance().monsterPrefabs[num].SetActive(true);
+        GameManager.instance.monsterList.Add(GameManager.GetInstance().monsterPrefabs[num]);
 
-        Monster monsterScript = bossMonsterPrefab[num].GetComponent<Monster>();
-        MonsterStat monsterStat = bossMonsterPrefab[num].GetComponent<MonsterStat>();
+        Monster monsterScript = GameManager.GetInstance().monsterPrefabs[num].GetComponent<Monster>();
+        MonsterStat monsterStat = GameManager.GetInstance().monsterPrefabs[num].GetComponent<MonsterStat>();
 
         monsterStat.maxHp += monsterHpUp * monsterHpAmount; // 소환 될 때마다 monsterHp를 증가시켜준다.
         monsterStat.curHp = monsterStat.maxHp;
 
-        bossMonsterPrefab[num].transform.position = monsterScript.wayPoints[0].position;
+        GameManager.GetInstance().monsterPrefabs[num].transform.position = monsterScript.wayPoints[0].position;
         monsterScript.targetPoint = monsterScript.wayPoints[1];
 
         monsterScript.monsterState = MonsterState.move;
