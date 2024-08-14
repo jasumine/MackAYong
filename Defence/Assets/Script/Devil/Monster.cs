@@ -114,16 +114,16 @@ public class Monster : MonoBehaviour
 
         if(targetPoint== wayPoints[1])
         {
-            GameManager.GetInstance().devilCoin++;
+            GameManager.GetInstance().devilCoin += GameManager.GetInstance().monsterCoin;
 
         }
         else if(targetPoint==wayPoints[2])
         {
-            GameManager.GetInstance().devilCoin += 2;
+            GameManager.GetInstance().devilCoin += GameManager.GetInstance().monsterCoin + 2;
         }
         else if(targetPoint==wayPoints[3])
         {
-            GameManager.GetInstance().devilCoin += 3;
+            GameManager.GetInstance().devilCoin += GameManager.GetInstance().monsterCoin + 3;
         }
 
         GameManager.GetInstance().devilCoinText.text = GameManager.GetInstance().devilCoin.ToString();

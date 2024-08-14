@@ -8,6 +8,8 @@ public class DevilDraw : MonoBehaviour
     public Image heroBossImage;
     public List<GameObject> bossMonsterPrefab;
 
+    public int monsterHpUp = -1;
+    public int monsterHpAmount = 50;
 
     // 중간 보스 소환
     public void SummonSetBoss()
@@ -103,6 +105,8 @@ public class DevilDraw : MonoBehaviour
 
     private void SummonBoss(int num)
     {
+        monsterHpUp++;
+
         Debug.Log(num + "번째 중간 보스를 소환합니다.");
         bossMonsterPrefab[num].SetActive(true);
         GameManager.instance.monsterList.Add(bossMonsterPrefab[num]);
@@ -110,6 +114,7 @@ public class DevilDraw : MonoBehaviour
         Monster monsterScript = bossMonsterPrefab[num].GetComponent<Monster>();
         MonsterStat monsterStat = bossMonsterPrefab[num].GetComponent<MonsterStat>();
 
+        monsterStat.maxHp += monsterHpUp * monsterHpAmount; // 소환 될 때마다 monsterHp를 증가시켜준다.
         monsterStat.curHp = monsterStat.maxHp;
 
         bossMonsterPrefab[num].transform.position = monsterScript.wayPoints[0].position;

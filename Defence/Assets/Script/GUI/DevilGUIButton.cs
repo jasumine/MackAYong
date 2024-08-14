@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class DevilGUIButton : MonoBehaviour
 {
+    private int goldCount;
+    private int perCount;
+
+
     public List<int> bossDrawCost;
     public List<TextMeshProUGUI> bossCostText;
 
     public List<int> AbilityCost;
     public List<TextMeshProUGUI> AbilityCostText;
-
+    public List<int> DrawPercent;
+    public List<TextMeshProUGUI> DrawPercentText;
 
 
     // ==============보스 뽑기================
@@ -35,6 +40,11 @@ public class DevilGUIButton : MonoBehaviour
             AbilityCost.Add(cost); // 능력 비용은 100으로 설정
             AbilityCostText[i].text = AbilityCost[i].ToString();
         }
+
+        DrawPercent.Add(60);
+        DrawPercent.Add(20);
+        DrawPercent.Add(5);
+        DrawPercent.Add(1);
     }
 
 
@@ -62,7 +72,7 @@ public class DevilGUIButton : MonoBehaviour
 
             int bossNum = Random.Range(0, 100);
 
-            if (0 <= bossNum && bossNum < 60)
+            if (0 <= bossNum && bossNum < DrawPercent[0])
             {
                 GameManager.GetInstance().bossTwoCount++;
                 GameManager.GetInstance().bossCountText[1].text = GameManager.GetInstance().bossTwoCount.ToString();
@@ -85,7 +95,7 @@ public class DevilGUIButton : MonoBehaviour
 
             int bossNum = Random.Range(0, 100);
 
-            if (0 <= bossNum && bossNum < 20)
+            if (0 <= bossNum && bossNum < DrawPercent[1])
             {
                 GameManager.GetInstance().bossThreeCount++;
                 GameManager.GetInstance().bossCountText[2].text = GameManager.GetInstance().bossThreeCount.ToString();
@@ -108,7 +118,7 @@ public class DevilGUIButton : MonoBehaviour
 
             int bossNum = Random.Range(0, 100);
 
-            if (0 <= bossNum && bossNum < 5)
+            if (0 <= bossNum && bossNum < DrawPercent[2])
             {
                 GameManager.GetInstance().bossFourCount++;
                 GameManager.GetInstance().bossCountText[3].text = GameManager.GetInstance().bossFourCount.ToString();
@@ -132,7 +142,7 @@ public class DevilGUIButton : MonoBehaviour
 
             int bossNum = Random.Range(0, 100);
 
-            if (0 <= bossNum && bossNum < 1)
+            if (0 <= bossNum && bossNum < DrawPercent[3])
             {
                 GameManager.GetInstance().bossFiveCount++;
                 GameManager.GetInstance().bossCountText[4].text = GameManager.GetInstance().bossFiveCount.ToString();
@@ -160,10 +170,12 @@ public class DevilGUIButton : MonoBehaviour
             AbilityCost[0] += 10;
             AbilityCostText[0].text = AbilityCost[0].ToString();
 
+            // 현재 소환된 몬스터의 능력을 올려준다.
             for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
             {
                 MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
 
+                mStat.curHp++;
                 mStat.maxHp++;
             }
             Debug.Log("hp를 증가합니다.");
@@ -184,6 +196,7 @@ public class DevilGUIButton : MonoBehaviour
             AbilityCost[1] += 10;
             AbilityCostText[1].text = AbilityCost[1].ToString();
 
+            // 현재 소환된 몬스터의 능력을 올려준다.
             for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
             {
                 MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
@@ -207,6 +220,7 @@ public class DevilGUIButton : MonoBehaviour
             AbilityCost[2] += 10;
             AbilityCostText[2].text = AbilityCost[2].ToString();
 
+            // 현재 소환된 몬스터의 능력을 올려준다.
             for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
             {
                 MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
@@ -219,43 +233,41 @@ public class DevilGUIButton : MonoBehaviour
 
     public void IncreaseGold()
     {
-        if (GameManager.GetInstance().devilCoin >= AbilityCost[3])
+        if (GameManager.GetInstance().devilCoin >= AbilityCost[3]&& goldCount <3)
         {
+            goldCount++;
             // 재화에서 비용만큼 감소하고 text 업데이트
             GameManager.GetInstance().devilCoin -= AbilityCost[3];
             GameManager.GetInstance().devilCoinText.text = GameManager.GetInstance().devilCoin.ToString();
 
             // 비용을 증가시켜준다. 텍스트도 업데이트.
-            AbilityCost[3] += 10;
+            AbilityCost[3] += 100;
             AbilityCostText[3].text = AbilityCost[3].ToString();
 
-            for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
-            {
-                MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
+            GameManager.GetInstance().monsterCoin++;
 
-                mStat.speed++;
-            }
             Debug.Log("재화 획득량을 증가합니다.");
         }
     }
 
     public void IncreasePercent()
     {
-        if (GameManager.GetInstance().devilCoin >= AbilityCost[4])
+        if (GameManager.GetInstance().devilCoin >= AbilityCost[4] && perCount <3)
         {
+            perCount++;
             // 재화에서 비용만큼 감소하고 text 업데이트
             GameManager.GetInstance().devilCoin -= AbilityCost[4];
             GameManager.GetInstance().devilCoinText.text = GameManager.GetInstance().devilCoin.ToString();
 
             // 비용을 증가시켜준다. 텍스트도 업데이트.
-            AbilityCost[4] += 10;
+            AbilityCost[4] += 100;
             AbilityCostText[4].text = AbilityCost[4].ToString();
 
-            for (int i = 0; i < GameManager.instance.monsterList.Count; i++)
+            
+            for (int i = 0; i < DrawPercent.Count; i++)
             {
-                MonsterStat mStat = GameManager.instance.monsterList[i].GetComponent<MonsterStat>();
-
-                mStat.speed++;
+                DrawPercent[i] += 1;
+                DrawPercentText[i].text = DrawPercent[i].ToString() + "%";
             }
             Debug.Log("뽑기 획득률을 증가합니다.");
         }

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI heroCoinText;
     public TextMeshProUGUI devilCoinText;
     public List<TextMeshProUGUI> bossCountText;
+    public int monsterCoin;
 
     public Image selectBossObject;
     public int selectBossNum = 0;
