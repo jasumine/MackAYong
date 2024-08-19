@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterController : MonoBehaviour
 {
     // 몬스터 생성을 담당하는 클래스
     public List<Transform> wayPoints;
+
+    public GameObject hpBarPrefab;
 
     public GameObject monsterParent;
     public float delayMonster;
@@ -56,6 +59,8 @@ public class MonsterController : MonoBehaviour
         {
             GameObject monster = Instantiate(GameManager.GetInstance().monsterPrefabs[0], wayPoints[0].transform.position, Quaternion.identity);
 
+            GameObject hpBar = Instantiate(hpBarPrefab, GameManager.GetInstance().hpBarParent.transform);
+
             Monster monsterScript = monster.GetComponent<Monster>();
             monsterScript.wayPoints.Add(wayPoints[0]);
             monsterScript.wayPoints.Add(wayPoints[1]);
@@ -66,6 +71,9 @@ public class MonsterController : MonoBehaviour
 
             monster.name = monster + monsterCount.ToString();
             monster.transform.parent = monsterParent.transform;
+
+            monsterScript.SetHpBar(hpBar);
+
 
             yield return new WaitForSeconds(delayMonster);
            monsterCount++;

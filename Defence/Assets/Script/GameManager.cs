@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public GameObject hpBarParent;
+
     public GameObject heroUI;
     public GameObject heroCamera;
     public GameObject devilUI;

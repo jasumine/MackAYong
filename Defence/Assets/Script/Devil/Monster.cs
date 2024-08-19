@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public enum MonsterState
 { 
@@ -20,6 +21,9 @@ public class Monster : MonoBehaviour
     // 0 - 시작지점, 1- 1차 중간지점, 2- 2차 중간지점, 3 - 도착지점
     public List<Transform> wayPoints;
     public Transform targetPoint;
+
+    public Slider hpBar;
+    public TextMeshProUGUI hpBarText;
 
     private MonsterStat mStat;
 
@@ -51,7 +55,10 @@ public class Monster : MonoBehaviour
         {
             attackStart = true;
             StartCoroutine("AttackGate");
+
         }
+
+        UpdateBar();
     }
 
     private void ChangePoint()
@@ -74,6 +81,30 @@ public class Monster : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, mStat.speed * Time.deltaTime);
     }
+
+
+    public void SetHpBar(GameObject hpBarObj)
+    {
+        hpBar = hpBarObj.GetComponent<Slider>();
+        hpBar.maxValue = mStat.maxHp;
+        hpBar.value = mStat.curHp;
+    }
+
+    private void UpdateBar()
+    {
+        if (hpBar != null)
+        {
+            hpBar.maxValue = mStat.maxHp;
+            hpBar.value = mStat.curHp;
+
+            Vector3 hpBarPosition = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 0.5f);
+            hpBar.transform.position = hpBarPosition;
+
+            hpBarText = hpBar.GetComponentInChildren<TextMeshProUGUI>();
+            hpBarText.text = $"{mStat.curHp} / {mStat.maxHp}";
+        }
+    }
+
 
     IEnumerator AttackGate()
     {
@@ -124,6 +155,7 @@ public class Monster : MonoBehaviour
         }
         else
         {
+            Destroy(hpBar.gameObject);
             Destroy(this.gameObject);
 
         }
