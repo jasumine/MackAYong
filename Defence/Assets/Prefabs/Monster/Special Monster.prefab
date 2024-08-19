@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5431820384069850009
 Transform:
   m_ObjectHideFlags: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   curHp: 100
   speed: 1
   attackSpeed: 1
+  monsterType: 0
 --- !u!114 &2876476196829052497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,9 +118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterState: 0
-  monsterType: 1
   wayPoints: []
   targetPoint: {fileID: 0}
+  hpBar: {fileID: 0}
+  hpBarText: {fileID: 0}
+  mStat: {fileID: 0}
 --- !u!61 &8809428575452006443
 BoxCollider2D:
   m_ObjectHideFlags: 0

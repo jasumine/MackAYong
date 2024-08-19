@@ -18,7 +18,6 @@ public class StageController : MonoBehaviour
     public TextMeshProUGUI stageInfoText;
 
     private MonsterController monsterController;
-    private DevilDraw devillDraw;
     private SpecialAbility specialAbility;
 
     private void Start()
@@ -30,7 +29,6 @@ public class StageController : MonoBehaviour
         stageInfoText.text = "Game Start";
 
         monsterController = GetComponent<MonsterController>();
-        devillDraw = GetComponent<DevilDraw>();
         specialAbility = GetComponent<SpecialAbility>();
     }
 
@@ -67,7 +65,6 @@ public class StageController : MonoBehaviour
                 Debug.Log("특별 능력 뽑기를 진행합니다.");
                 stageInfoText.text = "SpecialAbility Stage";
                 specialAbility.SpecialAbilityController();
-
             }
 
             // 5판마다 보스스테이지 진행 외에는 몬스터소환
@@ -75,7 +72,7 @@ public class StageController : MonoBehaviour
             {
                 Debug.Log("보스 스테이지를 진행합니다.");
                 stageInfoText.text = "Boss Stage";
-                devillDraw.SummonSetBoss();
+                monsterController.SummonSetBoss();
             }
             else
             {

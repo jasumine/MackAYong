@@ -8,26 +8,26 @@ public class SoldierLevelText : MonoBehaviour
     public SoldierStat stat;
     public TextMeshProUGUI textMeshProUGUI;
 
-    private void FixedUpdate()
-    {
-        if (stat == null)
-        {
-            stat = GetComponentInChildren<SoldierStat>();
-            if (stat != null)
-            {
-                textMeshProUGUI.text = stat.level.ToString();
-            }
-            else
-            {
-                textMeshProUGUI.text = null;
-            }
+    //private void FixedUpdate()
+    //{
+    //    if (stat == null)
+    //    {
+    //        stat = GetComponentInChildren<SoldierStat>();
+    //        if (stat != null)
+    //        {
+    //            textMeshProUGUI.text = stat.level.ToString();
+    //        }
+    //        else
+    //        {
+    //            textMeshProUGUI.text = null;
+    //        }
 
-            if (stat.isDragging == true)
-            {
-                textMeshProUGUI.text = null;
-            }
-        }
-        else return;
-    }
+    //        if (stat.isDragging == true)
+    //        {
+    //            textMeshProUGUI.text = null;
+    //        }
+    //    }
+    //    else return;
+    //}
 
 }

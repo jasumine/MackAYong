@@ -59,6 +59,9 @@ public class GameManager : MonoBehaviour
         devilCoin = 500;
         devilCoinText.text = devilCoin.ToString();
 
+        MonsterStat monsterStat = monsterPrefabs[0].GetComponent<MonsterStat>();
+        monsterStat.maxHp = 10;
+
         for(int i = 0; i<5; i++)
         {
             bossCount.Add(0);

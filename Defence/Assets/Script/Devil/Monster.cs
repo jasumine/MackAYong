@@ -25,13 +25,14 @@ public class Monster : MonoBehaviour
     public Slider hpBar;
     public TextMeshProUGUI hpBarText;
 
-    private MonsterStat mStat;
+    public MonsterStat mStat;
 
     private Gate gateScript;
     private bool attackStart;
 
     private void Start()
     {
+        //Debug.Log("몬스터 생성");
         mStat = GetComponent<MonsterStat>();
         targetPoint = wayPoints[1];
         this.transform.position = wayPoints[0].position;
@@ -85,14 +86,22 @@ public class Monster : MonoBehaviour
 
     public void SetHpBar(GameObject hpBarObj)
     {
+        //Debug.Log(hpBarObj.name);
+
         hpBar = hpBarObj.GetComponent<Slider>();
-        hpBar.maxValue = mStat.maxHp;
-        hpBar.value = mStat.curHp;
+        //Debug.Log("hpBar 추가");
+
+        
+        //hpBar.maxValue = mStat.maxHp;
+        //Debug.Log("maxhp 입력");
+        //hpBar.value = mStat.curHp;
+        //Debug.Log("curHp 입력");
+        
     }
 
     private void UpdateBar()
     {
-        if (hpBar != null)
+        if (hpBar != null&& mStat !=null)
         {
             hpBar.maxValue = mStat.maxHp;
             hpBar.value = mStat.curHp;
@@ -100,7 +109,10 @@ public class Monster : MonoBehaviour
             Vector3 hpBarPosition = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 0.5f);
             hpBar.transform.position = hpBarPosition;
 
-            hpBarText = hpBar.GetComponentInChildren<TextMeshProUGUI>();
+            if(hpBarText==null)
+            {
+                hpBarText = hpBar.GetComponentInChildren<TextMeshProUGUI>();
+            }
             hpBarText.text = $"{mStat.curHp} / {mStat.maxHp}";
         }
     }
@@ -149,8 +161,9 @@ public class Monster : MonoBehaviour
         GameManager.GetInstance().devilCoinText.text = GameManager.GetInstance().devilCoin.ToString();
 
 
-        if (mStat.monsterType == MonsterType.special || mStat.monsterType == MonsterType.boss)
+        if (mStat.monsterType == MonsterType.special)
         {
+            this.hpBar.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
         }
         else

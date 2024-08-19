@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpecialMonster : MonoBehaviour
 {
     public GameObject summonBotton;
+    public GameObject specialMonHpBar;
 
     public float coolTime;
     public float coolTimeMax;
@@ -56,7 +57,7 @@ public void SpecialBossDraw()
     {
         if (isSpecialCoolDown == true)
         {
-
+            specialMonHpBar.SetActive(true);
             isSpecialCoolDown = false;
             summonBotton.SetActive(false);
             Debug.Log("특별 몬스터를 소환 했습니다.");
