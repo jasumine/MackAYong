@@ -11076,6 +11076,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1174733545}
   - component: {fileID: 1174733544}
+  - component: {fileID: 1174733546}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11165,6 +11166,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1174733546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174733542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8087c3fba2b7a5f4d9ad5d6e617d8250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1208594975
 GameObject:
   m_ObjectHideFlags: 0
@@ -16259,9 +16272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a32b29eb1d03a4fb02a5ce942611a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroBossImage: {fileID: 446260341}
-  monsterHpUp: -1
-  monsterHpAmount: 50
 --- !u!1 &1814261605
 GameObject:
   m_ObjectHideFlags: 0
