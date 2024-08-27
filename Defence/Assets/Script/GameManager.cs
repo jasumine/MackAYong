@@ -41,6 +41,9 @@ public class GameManager : MonoBehaviour
     public List<GameObject> fifthSoliderList;
 
 
+    public AbilityDataManager abilityDataManager;
+
+
     private GameManager() { }
 
 
@@ -54,6 +57,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+
+        abilityDataManager = GetComponent<AbilityDataManager>();
+
         heroCoin = 100;
         heroCoinText.text = heroCoin.ToString();
         devilCoin = 500;
