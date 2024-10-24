@@ -8,38 +8,32 @@ public class SpecialAbility : MonoBehaviour
 {
     public GameObject specialPannel;
 
+    public bool isActive;
+    public float timeAttack;
+
     public List<Image> abilityImage;
     public List<TextMeshProUGUI> abilityName;
     public List<TextMeshProUGUI> abilityDiscription;
 
+    public List<AbilityData> abilityList = new List<AbilityData>();
 
     private void Update()
     {
-        // 일정시간이 지나면 선택하지 못하도록 active(false)를 추가한다.
-        // 자동선택으로 하기.
-
-        // 터치가 시작될 때 능력을 클릭했는지 확인한다.
-        if (Input.GetMouseButtonDown(0))
+        // 능력선택 화면이 실행 되고 있다면, 타이머를 작동한다.
+        if (isActive==true)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0;
+            timeAttack -= Time.deltaTime;
 
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-            if(hit.collider !=null)
+            if(timeAttack < 0 )
             {
-
+                // 일정시간이 지나면 선택하지 못하도록 active(false)를 추가한다.
+                // 자동으로 1번을 선택하게된다.
+                isActive = false;
+                abilityList[0].isActive = true;
+                specialPannel.SetActive(false);
             }
-
         }
-        
 
-        // 터치가 끝날 때 시작된 이미지와 같다면 능력을 선택하게 된 것이다.
-        if(Input.GetMouseButtonUp(0))
-        {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0;
-
-        }
     }
 
 
@@ -50,14 +44,26 @@ public class SpecialAbility : MonoBehaviour
         Debug.Log("특수 능력 뽑기를 진행합니다.");
         SelectAbility();
         specialPannel.SetActive(true);
+        isActive = true;
+        timeAttack = 30f;
+    }
+
+    public void SpecialAbilityQuit()
+    {
+        Debug.Log("특수 능력 뽑기를 마무리 합니다.");
+        timeAttack = 0;
     }
     
     void SelectAbility()
     {
         for(int i = 0; i<3;i++)
         {
+            // 선택된 능력을 list에 추가해준다.
             AbilityData abilty = SelectAbilityData();
             //Debug.Log("능력치 1개가 선택되었습니다.");
+            abilityList.Add(abilty);
+            
+
 
             // 선택되어진  ability 이미지를 띄워준다.
             ChangeAbilityImage(abilty, i);
@@ -121,14 +127,8 @@ public class SpecialAbility : MonoBehaviour
                 break;
         }
 
-        abilityName[_num].text = _ability.Grade;
+        abilityName[_num].text = _ability.name;
         abilityDiscription[_num].text = _ability.Discription;
     }
 
-
-    // ability click event
-    void ClickAbility()
-    {
-
-    }
 }

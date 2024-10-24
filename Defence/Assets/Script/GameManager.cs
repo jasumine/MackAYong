@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
 
     public AbilityDataManager abilityDataManager;
-
+    public SpecialAbility specialAbility;
 
     private GameManager() { }
 
@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
 
         abilityDataManager = GetComponent<AbilityDataManager>();
+        specialAbility = GetComponent<SpecialAbility>();
 
         heroCoin = 100;
         heroCoinText.text = heroCoin.ToString();

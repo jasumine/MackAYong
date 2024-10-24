@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MonsterMerge : MonoBehaviour, IPointerClickHandler
+public class MonsterMerge : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
 {
     public Image heroBossImage;
 
@@ -17,6 +17,8 @@ public class MonsterMerge : MonoBehaviour, IPointerClickHandler
 
     private Coroutine highlightCoroutine;
     private GameObject lastClickObject;
+
+    private GameObject clickAbility;
     
 
     // 싱글 클릭의 경우 하이라이트 표시
@@ -27,26 +29,76 @@ public class MonsterMerge : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        float currentTime = Time.time;
-        GameObject eventObject = eventData.pointerCurrentRaycast.gameObject;
-
-        // 현재 클릭시간 - 마지막 클릭시간 이 더블클릭(0.3)보다 적으면 더블클릭이다.
-        // 같은 오브젝트인지 확인
-        if (eventObject == lastClickObject && currentTime - lastTime < doubleClickedTime )
+        // 특수능력 뽑기가 진행 중 이라면 다른 클릭이 되지 않도록 한다.
+        if(GameManager.GetInstance().specialAbility.isActive == true)
         {
-            // 차이가 0.3보다 적기때문에 더블클릭이므로 여기서 더블클릭 처리를 한다.
-            DoubleClick(eventObject);
+            // 터치가 시작될 때 능력을 클릭했는지 확인한다.
+
+            // 터치가 끝날 때 시작된 이미지와 같다면 능력을 선택하게 된 것이다.
         }
         else
         {
-            // 차이가 0.3보다 크다면 싱글 클릭이 되므로, 여기서 싱글클릭 처리를 한다.
-            SingleClick(eventObject);
-        }
+            float currentTime = Time.time;
+            GameObject eventObject = eventData.pointerCurrentRaycast.gameObject;
 
-        // 마지막 클릭시간 업데이트
-        lastTime = currentTime;
-        lastClickObject = eventObject;
+            // 현재 클릭시간 - 마지막 클릭시간 이 더블클릭(0.3)보다 적으면 더블클릭이다.
+            // 같은 오브젝트인지 확인
+            if (eventObject == lastClickObject && currentTime - lastTime < doubleClickedTime)
+            {
+                // 차이가 0.3보다 적기때문에 더블클릭이므로 여기서 더블클릭 처리를 한다.
+                DoubleClick(eventObject);
+            }
+            else
+            {
+                // 차이가 0.3보다 크다면 싱글 클릭이 되므로, 여기서 싱글클릭 처리를 한다.
+                SingleClick(eventObject);
+            }
+
+            // 마지막 클릭시간 업데이트
+            lastTime = currentTime;
+            lastClickObject = eventObject;
+        }
     }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        // 특수 능력 뽑기가 진행 중 일때 실행되도록 한다.
+        if (GameManager.GetInstance().specialAbility.isActive == true)
+        {
+            GameObject eventObject = eventData.pointerCurrentRaycast.gameObject;
+
+            // 터치가 시작될 때 능력을 저장한다.
+            if (eventObject.tag == "AbilityImage")
+            {
+                clickAbility = eventObject;
+                Debug.Log("능력뽑기 이벤트 클릭을 시작");
+            }
+        }
+    }
+
+
+
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        // 특수 능력 뽑기가 진행 중 일때 실행되도록 한다.
+        if (GameManager.GetInstance().specialAbility.isActive == true)
+        {
+            GameObject eventObject = eventData.pointerCurrentRaycast.gameObject;
+
+            // 터치가 끝날 때 시작된 이미지와 같다면 능력을 선택하게 된 것이다.
+
+            if (clickAbility == eventObject)
+            {
+                // TODO
+                // clickAbility의 능력을 실행한다.
+                Debug.Log("능력뽑기 이벤트 클릭을 끝");
+                GameManager.GetInstance().specialAbility.SpecialAbilityQuit();
+            }
+        }
+    }
+
+
 
     private void SingleClick(GameObject eventObject)
     {

@@ -12,6 +12,7 @@ public class MonsterDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private int dragbossNum;
     //public GameObject dropObject;
 
+    // ============ merge ============
     // 이미지는 원래 위치에 있고, 
     // 드래그를 시작할(클릭) 경우 해당 이미지가 마우스를 따라다닌다.
     // 드래그중에는 아무것도 클릭되지 않는 상태이며
@@ -24,87 +25,92 @@ public class MonsterDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-       // Debug.Log("드래그를 시작합니다.");
+        // Debug.Log("드래그를 시작합니다.");
 
-        GameObject eventObject = eventData.pointerCurrentRaycast.gameObject;
 
-        switch(eventObject.gameObject.tag)
+        // 능력뽑기가 실행되지 않았다면 드래그가 가능하다.
+        if (GameManager.GetInstance().specialAbility.isActive == false)
         {
-            case "FirstBoss":
-                if(GameManager.GetInstance().bossCount[0] > 0)
-                {
-                    //Debug.Log("중간보스 이미지를 복사합니다.");
-                    dragObject.SetActive(true);
+            GameObject eventObject = eventData.pointerCurrentRaycast.gameObject;
 
-                    Image dragImage = dragObject.GetComponent<Image>();
-                    Image eventImage = eventObject.GetComponent<Image>();
+            switch (eventObject.gameObject.tag)
+            {
+                case "FirstBoss":
+                    if (GameManager.GetInstance().bossCount[0] > 0)
+                    {
+                        //Debug.Log("중간보스 이미지를 복사합니다.");
+                        dragObject.SetActive(true);
 
-                    // drag 이미지에 event 이미지를 넣어준다.
-                    dragImage.sprite = eventImage.sprite;
-                    dragbossNum = 1;
-                }
+                        Image dragImage = dragObject.GetComponent<Image>();
+                        Image eventImage = eventObject.GetComponent<Image>();
 
-                break;
+                        // drag 이미지에 event 이미지를 넣어준다.
+                        dragImage.sprite = eventImage.sprite;
+                        dragbossNum = 1;
+                    }
 
-            case "SecondBoss":
-                if (GameManager.GetInstance().bossCount[1] > 0)
-                {
-                    //Debug.Log("중간보스 이미지를 복사합니다.");
-                    dragObject.SetActive(true);
+                    break;
 
-                    Image dragImage = dragObject.GetComponent<Image>();
-                    Image eventImage = eventObject.GetComponent<Image>();
+                case "SecondBoss":
+                    if (GameManager.GetInstance().bossCount[1] > 0)
+                    {
+                        //Debug.Log("중간보스 이미지를 복사합니다.");
+                        dragObject.SetActive(true);
 
-                    // drag 이미지에 event 이미지를 넣어준다.
-                    dragImage.sprite = eventImage.sprite;
-                    dragbossNum = 2;
-                }
-                break;
+                        Image dragImage = dragObject.GetComponent<Image>();
+                        Image eventImage = eventObject.GetComponent<Image>();
 
-            case "ThirdBoss":
-                if (GameManager.GetInstance().bossCount[2] > 0)
-                {
-                    //Debug.Log("중간보스 이미지를 복사합니다.");
-                    dragObject.SetActive(true);
+                        // drag 이미지에 event 이미지를 넣어준다.
+                        dragImage.sprite = eventImage.sprite;
+                        dragbossNum = 2;
+                    }
+                    break;
 
-                    Image dragImage = dragObject.GetComponent<Image>();
-                    Image eventImage = eventObject.GetComponent<Image>();
+                case "ThirdBoss":
+                    if (GameManager.GetInstance().bossCount[2] > 0)
+                    {
+                        //Debug.Log("중간보스 이미지를 복사합니다.");
+                        dragObject.SetActive(true);
 
-                    // drag 이미지에 event 이미지를 넣어준다.
-                    dragImage.sprite = eventImage.sprite;
-                    dragbossNum = 3;
-                }
-                break;
+                        Image dragImage = dragObject.GetComponent<Image>();
+                        Image eventImage = eventObject.GetComponent<Image>();
 
-            case "FourthBoss":
-                if (GameManager.GetInstance().bossCount[3] > 0)
-                {
-                    //Debug.Log("중간보스 이미지를 복사합니다.");
-                    dragObject.SetActive(true);
+                        // drag 이미지에 event 이미지를 넣어준다.
+                        dragImage.sprite = eventImage.sprite;
+                        dragbossNum = 3;
+                    }
+                    break;
 
-                    Image dragImage = dragObject.GetComponent<Image>();
-                    Image eventImage = eventObject.GetComponent<Image>();
+                case "FourthBoss":
+                    if (GameManager.GetInstance().bossCount[3] > 0)
+                    {
+                        //Debug.Log("중간보스 이미지를 복사합니다.");
+                        dragObject.SetActive(true);
 
-                    // drag 이미지에 event 이미지를 넣어준다.
-                    dragImage.sprite = eventImage.sprite;
-                    dragbossNum = 4;
-                }
-                break;
+                        Image dragImage = dragObject.GetComponent<Image>();
+                        Image eventImage = eventObject.GetComponent<Image>();
 
-            case "FifthBoss":
-                if (GameManager.GetInstance().bossCount[4] > 0)
-                {
-                    //Debug.Log("중간보스 이미지를 복사합니다.");
-                    dragObject.SetActive(true);
+                        // drag 이미지에 event 이미지를 넣어준다.
+                        dragImage.sprite = eventImage.sprite;
+                        dragbossNum = 4;
+                    }
+                    break;
 
-                    Image dragImage = dragObject.GetComponent<Image>();
-                    Image eventImage = eventObject.GetComponent<Image>();
+                case "FifthBoss":
+                    if (GameManager.GetInstance().bossCount[4] > 0)
+                    {
+                        //Debug.Log("중간보스 이미지를 복사합니다.");
+                        dragObject.SetActive(true);
 
-                    // drag 이미지에 event 이미지를 넣어준다.
-                    dragImage.sprite = eventImage.sprite;
-                    dragbossNum = 5;
-                }
-                break;
+                        Image dragImage = dragObject.GetComponent<Image>();
+                        Image eventImage = eventObject.GetComponent<Image>();
+
+                        // drag 이미지에 event 이미지를 넣어준다.
+                        dragImage.sprite = eventImage.sprite;
+                        dragbossNum = 5;
+                    }
+                    break;
+            }
         }
     }
 

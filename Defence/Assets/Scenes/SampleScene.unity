@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 58945556}
   m_Layer: 5
   m_Name: Image
-  m_TagString: Untagged
+  m_TagString: AbilityImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -367,10 +367,10 @@ RectTransform:
   - {fileID: 1365400748}
   m_Father: {fileID: 1599491053}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 330, y: -175}
+  m_SizeDelta: {x: 200, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &58945556
 MonoBehaviour:
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 89434438}
   m_Layer: 5
   m_Name: Image (1)
-  m_TagString: Untagged
+  m_TagString: AbilityImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -923,10 +923,10 @@ RectTransform:
   - {fileID: 59191774}
   m_Father: {fileID: 1599491053}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 540, y: -175}
+  m_SizeDelta: {x: 200, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &89434438
 MonoBehaviour:
@@ -4958,7 +4958,7 @@ GameObject:
   - component: {fileID: 544772053}
   m_Layer: 5
   m_Name: Image (2)
-  m_TagString: Untagged
+  m_TagString: AbilityImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4979,10 +4979,10 @@ RectTransform:
   - {fileID: 1248733200}
   m_Father: {fileID: 1599491053}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 750, y: -175}
+  m_SizeDelta: {x: 200, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &544772053
 MonoBehaviour:
@@ -11214,6 +11214,9 @@ GameObject:
   - component: {fileID: 1174733545}
   - component: {fileID: 1174733544}
   - component: {fileID: 1174733546}
+  - component: {fileID: 1174733549}
+  - component: {fileID: 1174733548}
+  - component: {fileID: 1174733547}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11289,6 +11292,7 @@ MonoBehaviour:
   forthSoliderList: []
   fifthSoliderList: []
   abilityDataManager: {fileID: 0}
+  specialAbility: {fileID: 0}
 --- !u!4 &1174733545
 Transform:
   m_ObjectHideFlags: 0
@@ -11316,6 +11320,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03b6b2261bc1d440ac6e40224377d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1174733547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174733542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1742cd51b00a145b3124fb32f19963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  specialPannel: {fileID: 1599491052}
+  isActive: 0
+  timeAttack: 0
+  abilityImage:
+  - {fileID: 58945556}
+  - {fileID: 89434438}
+  - {fileID: 544772053}
+  abilityName:
+  - {fileID: 1734438204}
+  - {fileID: 446218798}
+  - {fileID: 789167065}
+  abilityDiscription:
+  - {fileID: 1365400749}
+  - {fileID: 59191775}
+  - {fileID: 1248733201}
+--- !u!114 &1174733548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174733542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52f5aad10091474f8254e892a07eff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPoints:
+  - {fileID: 988522177}
+  - {fileID: 228037368}
+  - {fileID: 565689341}
+  - {fileID: 131476714}
+  hpBarPrefab: {fileID: 3358308808452039840, guid: 9afa0c48bcfe0ce46bd41d1764026f2b, type: 3}
+  monsterParent: {fileID: 337806991}
+  delayMonster: 1
+  monsterCount: 0
+  monsterCountMax: 5
+  monsterHpUp: -1
+  monsterHpAmount: 10
+  heroBossImage: {fileID: 446260341}
+  bossHpUp: -1
+  bossHpAmount: 50
+--- !u!114 &1174733549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174733542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3134a8475779d468f515b40a2b9e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gate:
+  - {fileID: 1863523322}
+  - {fileID: 160020758}
+  - {fileID: 322540736}
+  stage: 0
+  stageTime: 0
+  stageMaxTime: 6
+  stageText: {fileID: 2119146635}
+  stageTimeText: {fileID: 321234164}
+  stageInfoText: {fileID: 292165583}
 --- !u!1 &1208594975
 GameObject:
   m_ObjectHideFlags: 0
@@ -15171,7 +15251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1599491053
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16581,14 +16661,13 @@ GameObject:
   - component: {fileID: 1809282058}
   - component: {fileID: 1809282060}
   - component: {fileID: 1809282063}
-  - component: {fileID: 1809282064}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1809282058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16666,6 +16745,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specialPannel: {fileID: 1599491052}
+  isActive: 0
+  timeAttack: 0
   abilityImage:
   - {fileID: 58945556}
   - {fileID: 89434438}
@@ -16678,18 +16759,6 @@ MonoBehaviour:
   - {fileID: 1365400749}
   - {fileID: 59191775}
   - {fileID: 1248733201}
---- !u!114 &1809282064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809282057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98a32b29eb1d03a4fb02a5ce942611a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1814261605
 GameObject:
   m_ObjectHideFlags: 0

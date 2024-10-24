@@ -27,13 +27,17 @@ public class CSVReader : MonoBehaviour
                 AbilityData ability = new AbilityData();
                 ability.ID = int.Parse(fields[0]);
                 //Debug.Log(i + "ID");
-                ability.Type = fields[1];
+                ability.name = fields[1];
+                ability.Type = fields[2];
                 //Debug.Log(i + "Tyoe");
-                ability.Grade = fields[2];
+                ability.Grade = fields[3];
                 //Debug.Log(i + "Grad");
-                ability.Discription = fields[3];
+                ability.Discription = fields[4];
                 //Debug.Log(i + "Discription");
-                ability.value = int.Parse(fields[4]);
+                ability.target1 = fields[5];
+                ability.target2 = fields[6];
+                ability.EffectType1 = fields[7];
+                ability.value = int.Parse(fields[8]);
                 //Debug.Log(i + "value");
 
                 abilityDataList.Add(ability);
