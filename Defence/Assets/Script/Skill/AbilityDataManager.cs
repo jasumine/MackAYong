@@ -11,6 +11,7 @@ public class AbilityDataManager : MonoBehaviour
     public List<AbilityData> gradeC = new List<AbilityData>();
     public List<AbilityData> gradeD = new List<AbilityData>();
 
+
     private void Start()
     {
         abilityDataList = CSVReader.LoadCSV("SpecialAbilityList.csv");
@@ -45,4 +46,78 @@ public class AbilityDataManager : MonoBehaviour
         }
         Debug.Log("스킬 분류가 완료되었습니다.");
     }
+
+
+    // type에 따라서 스킬 만들기, special은 id로 구분
+
+    void InitializeAbilites()
+    {
+        // for문을 이용해 id 1개씩 능력의 효과를 설정해 준다.
+        foreach(var ability in abilityDataList)
+        {
+            switch(ability.Type)
+            {
+                case "Attack":
+                    ability.ExecuteAbility = TypeAttackEffect;
+                    break;
+                case "Buff":
+                    break;
+                case "DeBuff":
+                    break;
+                case "Gold":
+                    break;
+                case "Draw":
+                    break;
+                case "Special":
+
+                    break;
+
+
+                // ============마왕 특수 능력============
+                case "Witch":
+                    switch(ability.ID)
+                    {
+                        case 1:
+                            break;
+                    }
+                    break;
+                case "Knight":
+                    break;
+                case "Necromancer":
+                    break;
+                case "Dragon":
+                    break;
+            }
+        }
+    }
+
+
+    private void TypeAttackEffect(AbilityEffect a)
+    {
+
+    }
+
+    private void TypeBuffEffect()
+    {
+
+    }
+
+    private void TypeDebuffEffect()
+    {
+
+    }
+
+    private void TypeGoldEffect()
+    {
+
+    }
+
+    private void TypeDrawEffect()
+    {
+
+    }
+
+
+
+
 }
